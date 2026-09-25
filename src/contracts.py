@@ -1,3 +1,4 @@
+import math
 from typing import Literal, TypedDict
 
 
@@ -92,6 +93,8 @@ def validate_search_results(
         score = item.get("score")
         if not isinstance(score, (int, float)) or isinstance(score, bool):
             raise ValueError("result.score must be numeric")
+        if not math.isfinite(score):
+            raise ValueError("result.score must be finite")
         method = item.get("retrieval_method")
         if method not in valid_methods:
             raise ValueError("result.retrieval_method is invalid")

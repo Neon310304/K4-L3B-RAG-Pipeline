@@ -1,0 +1,371 @@
+{
+  "checked_at": "2026-09-25T05:39:09+00:00",
+  "corpus_sha256": "c2f27eecf7515d01cfcd659154788810f38b6f7a8c7851b4fc6eb1b4171d47fa",
+  "chunk_sha256": "bbd6720bc526a569c5c2c8790feddbaca37e0fd23601f4feb60d7051364146ec",
+  "threshold": 0.6,
+  "purpose": "real index routing smoke test; no simulated provider response",
+  "probes": [
+    {
+      "label": "in_domain",
+      "query": "How long must a password be when used as the only authentication factor?",
+      "mode": "hybrid",
+      "score_threshold": 0.6,
+      "best_dense_score": 0.7047051191329956,
+      "dense_confident": true,
+      "dense_count": 10,
+      "bm25_count": 10,
+      "rrf_calls": 1,
+      "fallback_attempted": false,
+      "fallback_status": "not_attempted",
+      "fallback_error_type": null,
+      "results": [
+        {
+          "id": "nist-sp800-63b-4::chunk-114",
+          "content": "choose a different password. Other composition requirements for passwords SHALL NOT\nbe imposed. A rationale for this is presented in Appendix A, Strength of Passwords.\n3.1.1.2. Password Verifiers\nThe following requirements apply to passwords.\n1. Verifiers and CSPs SHALL require passwords that are used as a single-factor\nauthentication mechanism to be a minimum of 15 characters in length. Verifiers\nand CSPs MAY allow passwords that are only used as part of multi-factor",
+          "metadata": {
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "language": "en",
+            "document_id": "nist-sp800-63b-4",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "chunk_index": 114,
+            "pdf_page": 25
+          },
+          "score": 0.031544957774465976,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_good_password::chunk-31",
+          "content": "1. Set up multifactor authentication. Passkeys are a great option.\n2. Use a password manager.\n3. If you must make a password, make sure it’s at least 15 characters long. A passphrase can help you come up with something long and memorable.",
+          "metadata": {
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "source": "nist_good_password.md",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "title": "How Do I Create a Good Password?",
+            "language": "en",
+            "doc_type": "news",
+            "document_id": "nist_good_password",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "chunk_index": 31
+          },
+          "score": 0.031544957774465976,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-115",
+          "content": "authentication processes to be shorter but SHALL require them to be a minimum\nof eight characters in length.\n2. Verifiers and CSPs SHOULD permit a maximum password length of at least 64\ncharacters.\n3. Verifiers and CSPs SHOULD accept all printing ASCII [RFC20] characters and the\nspace character in passwords.\n4. Verifiers and CSPs SHOULD accept Unicode [ISO/ISC 10646] characters in\npasswords. Each Unicode code point SHALL be counted as a single character when\nevaluating password length.",
+          "metadata": {
+            "chunk_index": 115,
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "pdf_page": 25,
+            "language": "en",
+            "document_id": "nist-sp800-63b-4",
+            "edition": "Revision 4, final, July 2025",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md"
+          },
+          "score": 0.016129032258064516,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_good_password::chunk-15",
+          "content": "MFA comes in many forms, such as USB dongles, authenticator apps, push notifications or text message codes. When MFA is turned on, a hacker would need to not only compromise your password but also gain control of the second factor. This second factor is much harder to compromise since it is typically something physically in your possession, like your phone",
+          "metadata": {
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "doc_type": "news",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "source": "nist_good_password.md",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "chunk_index": 15,
+            "document_id": "nist_good_password",
+            "language": "en",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "title": "How Do I Create a Good Password?",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "date_crawled": "2026-09-25T04:14:55+00:00"
+          },
+          "score": 0.016129032258064516,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-95",
+          "content": "authentication factors used for authentication:\n• Something you know (e.g., a password)\n• Something you have (e.g., a device containing a cryptographic key)\n• Something you are (e.g., a fingerprint or other biometric characteristic data)\nSingle-factor authentication requires only one of the above factors, most often\n“something you know.” Multiple instances of the same factor still constitute single-factor\nauthentication. For example, a user-generated PIN and a password do not constitute two",
+          "metadata": {
+            "document_id": "nist-sp800-63-4",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "chunk_index": 95,
+            "doc_type": "legal",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "pdf_page": 21,
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "language": "en",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "source": "nist_sp_800_63_4.md",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "edition": "Revision 4, final, July 2025"
+          },
+          "score": 0.015873015873015872,
+          "retrieval_method": "hybrid"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "How do I bake a chocolate cake?",
+      "mode": "hybrid",
+      "score_threshold": 0.6,
+      "best_dense_score": 0.3921579122543335,
+      "dense_confident": false,
+      "dense_count": 10,
+      "bm25_count": 10,
+      "rrf_calls": 1,
+      "fallback_attempted": true,
+      "fallback_status": "error",
+      "fallback_error_type": "PageIndexNotConfigured",
+      "results": [
+        {
+          "id": "nist-sp800-63b-4::chunk-505",
+          "content": "alternative authentication strategies.",
+          "metadata": {
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "chunk_index": 505,
+            "language": "en",
+            "document_id": "nist-sp800-63b-4",
+            "doc_type": "legal",
+            "edition": "Revision 4, final, July 2025",
+            "pdf_page": 91,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd"
+          },
+          "score": 0.01639344262295082,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_good_password::chunk-13",
+          "content": "Now, you may be asking yourself, what should I do then? If passwords are insecure, how do I protect my online accounts? Here are NIST’s recommendations.\n\nThe first thing you should do is add multifactor authentication.\n\n## What is multifactor authentication?",
+          "metadata": {
+            "chunk_index": 13,
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "language": "en",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "source": "nist_good_password.md",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "doc_type": "news",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "title": "How Do I Create a Good Password?",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "document_id": "nist_good_password"
+          },
+          "score": 0.01639344262295082,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-624",
+          "content": "the challenge and a shared secret together or by applying a private-key operation\nto the challenge) to generate a response that is sent to the verifier. The verifier can\nindependently verify the response generated by the claimant (e.g., by recomputing\nthe hash of the challenge and the shared secret and comparing it to the response or\nperforming a public-key operation on the response) and establish that the claimant\npossesses and controls the secret.\nclaimant",
+          "metadata": {
+            "source": "nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "edition": "Revision 4, final, July 2025",
+            "pdf_page": 116,
+            "chunk_index": 624,
+            "language": "en",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "document_id": "nist-sp800-63b-4",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf"
+          },
+          "score": 0.016129032258064516,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_mfa::chunk-17",
+          "content": "**Related Resources**\n\n- [Cybersecurity and Infrastructure Security Agency (CISA) More than a Password](https://www.cisa.gov/MFA)\n- [How Do I Create a Good Password-And What Else Can I Do to Secure My Online Accounts?](https://www.nist.gov/cybersecurity/how-do-i-create-good-password)",
+          "metadata": {
+            "document_id": "nist_mfa",
+            "source": "nist_mfa.md",
+            "title": "Multi-Factor Authentication",
+            "chunk_index": 17,
+            "doc_type": "news",
+            "language": "en",
+            "date_crawled": "2026-09-25T04:14:57+00:00",
+            "landing_sha256": "0984726a320fb230fc9d6bf7cee1d2e0d9c994b533454adb993f6ee2dace69f3",
+            "standardized_sha256": "69904ee6a0ae707fb2ea5ae8890b616e4f46c90b2dc50cb1310edd723202e531",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+            "standardized_file": "data/standardized/news/nist_mfa.md",
+            "landing_file": "data/landing/news/nist_mfa.json"
+          },
+          "score": 0.016129032258064516,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-375",
+          "content": "to the challenge) to generate a response that is sent to the verifier. The verifier can\nindependently verify the response generated by the claimant (e.g., by recomputing\nthe hash of the challenge and the shared secret and comparing it to the response or\nperforming a public-key operation on the response) and establish that the claimant\npossesses and controls the secret.",
+          "metadata": {
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal",
+            "document_id": "nist-sp800-63-4",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "source": "nist_sp_800_63_4.md",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "language": "en",
+            "chunk_index": 375,
+            "pdf_page": 77,
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md"
+          },
+          "score": 0.015873015873015872,
+          "retrieval_method": "hybrid"
+        }
+      ]
+    },
+    {
+      "label": "unsupported_near_domain",
+      "query": "What is the password of my personal email account?",
+      "mode": "hybrid",
+      "score_threshold": 0.6,
+      "best_dense_score": 0.6342175006866455,
+      "dense_confident": true,
+      "dense_count": 10,
+      "bm25_count": 10,
+      "rrf_calls": 1,
+      "fallback_attempted": false,
+      "fallback_status": "not_attempted",
+      "fallback_error_type": null,
+      "results": [
+        {
+          "id": "nist_mfa::chunk-8",
+          "content": "*Example: Unfortunately, you received a convincing phishing email from what you thought was your accounting software provider. You entered your credentials into the fake website, giving the imposter your username and password. Thankfully, you have MFA enabled on this account.* *In addition to a username and password, a user also needs a security key to be granted access. Because the criminal did not have access to this security key, you were able to avert the crisis.*",
+          "metadata": {
+            "landing_file": "data/landing/news/nist_mfa.json",
+            "chunk_index": 8,
+            "language": "en",
+            "standardized_file": "data/standardized/news/nist_mfa.md",
+            "source": "nist_mfa.md",
+            "doc_type": "news",
+            "landing_sha256": "0984726a320fb230fc9d6bf7cee1d2e0d9c994b533454adb993f6ee2dace69f3",
+            "standardized_sha256": "69904ee6a0ae707fb2ea5ae8890b616e4f46c90b2dc50cb1310edd723202e531",
+            "title": "Multi-Factor Authentication",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+            "document_id": "nist_mfa",
+            "date_crawled": "2026-09-25T04:14:57+00:00"
+          },
+          "score": 0.030776515151515152,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_mfa::chunk-17",
+          "content": "**Related Resources**\n\n- [Cybersecurity and Infrastructure Security Agency (CISA) More than a Password](https://www.cisa.gov/MFA)\n- [How Do I Create a Good Password-And What Else Can I Do to Secure My Online Accounts?](https://www.nist.gov/cybersecurity/how-do-i-create-good-password)",
+          "metadata": {
+            "language": "en",
+            "document_id": "nist_mfa",
+            "title": "Multi-Factor Authentication",
+            "landing_sha256": "0984726a320fb230fc9d6bf7cee1d2e0d9c994b533454adb993f6ee2dace69f3",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+            "landing_file": "data/landing/news/nist_mfa.json",
+            "source": "nist_mfa.md",
+            "standardized_file": "data/standardized/news/nist_mfa.md",
+            "doc_type": "news",
+            "standardized_sha256": "69904ee6a0ae707fb2ea5ae8890b616e4f46c90b2dc50cb1310edd723202e531",
+            "chunk_index": 17,
+            "date_crawled": "2026-09-25T04:14:57+00:00"
+          },
+          "score": 0.0304147465437788,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-462",
+          "content": "8.1.2.1. Passwords\nTypical Usage\nUsers often manually input the password (sometimes referred to as a passphrase or\nPIN). Alternatively, they may use a password manager to select a secure password\nand maintain distinct passwords for each authenticated service. The use of distinct\npasswords is important to avoid “password stuffing” attacks in which an attacker uses\na compromised password from one site to access the user’s account on other sites.",
+          "metadata": {
+            "document_id": "nist-sp800-63b-4",
+            "chunk_index": 462,
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "doc_type": "legal",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "language": "en",
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63b_4.md",
+            "pdf_page": 83
+          },
+          "score": 0.01639344262295082,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_good_password::chunk-13",
+          "content": "Now, you may be asking yourself, what should I do then? If passwords are insecure, how do I protect my online accounts? Here are NIST’s recommendations.\n\nThe first thing you should do is add multifactor authentication.\n\n## What is multifactor authentication?",
+          "metadata": {
+            "chunk_index": 13,
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "language": "en",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "source": "nist_good_password.md",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "doc_type": "news",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "title": "How Do I Create a Good Password?",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "document_id": "nist_good_password"
+          },
+          "score": 0.01639344262295082,
+          "retrieval_method": "hybrid"
+        },
+        {
+          "id": "nist_good_password::chunk-32",
+          "content": "To sum up, if you must create a password, don’t choose “password”! And more importantly, don’t use a password alone — take advantage of other steps to secure your account, such as multifactor authentication. These additional steps are the true key for securing your account as best as possible.\n\n---",
+          "metadata": {
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "document_id": "nist_good_password",
+            "language": "en",
+            "title": "How Do I Create a Good Password?",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "source": "nist_good_password.md",
+            "chunk_index": 32,
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "doc_type": "news",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password"
+          },
+          "score": 0.016129032258064516,
+          "retrieval_method": "hybrid"
+        }
+      ]
+    }
+  ]
+}

@@ -1,106 +1,93 @@
-## 1. Chọn đề tài
+# Step-by-step — trạng thái và lệnh tái lập
 
-- Chọn một chủ đề trong [danh sách gợi ý](SUGGESTED_TOPICS.md) hoặc chủ đề khác.
-- Phân công role, chia nhiệm vụ các thành viên
-- Mỗi thành viên ghi lại commit mình phụ trách để hoàn thiện individual report
+Tài liệu này ghi lại đường chạy đã dùng cho corpus an toàn tài khoản, retrieval hybrid, generation có citation và evaluation A/B. Các lệnh PowerShell dùng Python trong `.venv`; trên Linux/macOS thay đường dẫn interpreter bằng `.venv/bin/python`.
 
-## 2. Cài môi trường
+## 1. Cài môi trường
 
-```bash
+```powershell
 python -m venv .venv
-source .venv/bin/activate       # Windows: .venv\Scripts\activate
-python -m pip install -e ".[dev]"
-python -m playwright install chromium
-cp .env.example .env
+.\.venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m playwright install chromium
+Copy-Item .env.example .env
 ```
 
-## 3. Thu thập dữ liệu
+Provider/model được đọc từ `.env` cục bộ. Không commit file này.
 
-- Tải tối thiểu 3 PDF/DOCX vào `data/landing/legal/`.
-- Crawl tối thiểu 5 bài vào `data/landing/news/`.
-- Mỗi JSON có `url`, `title`, `date_crawled`, `content_markdown`.
+## 2. Thu thập và chuẩn hóa corpus
 
-```bash
-python -m src.task1_collect_legal_docs
-python -m src.task2_crawl_news
+Chủ đề đã chọn là mật khẩu, MFA, phishing và federation trong tài liệu NIST. Corpus cuối có 3 PDF và 5 bài viết NIST, mỗi nguồn có provenance và checksum.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.task1_collect_legal_docs
+.\.venv\Scripts\python.exe -m src.task2_crawl_news
+.\.venv\Scripts\python.exe -m src.task3_convert_markdown
+.\.venv\Scripts\python.exe -m pytest tests/test_corpus.py tests/test_acceptance.py -q
 ```
 
-Trong repo có setup sẵn Crawl4AI, các bạn tùy ý sử dụng công cụ khác của mình
+Output nằm ở `data/landing/` và `data/standardized/`; chi tiết ở [`CORPUS.md`](CORPUS.md) và [`../reports/CORPUS_REPORT.md`](../reports/CORPUS_REPORT.md).
 
-## 4. Chuẩn hóa Markdown
+## 3. Chunk, embedding và hai đường search
 
-Hoàn thiện Task 3 rồi chạy:
+Đã dùng recursive chunking 500 ký tự, overlap 50, BAAI/bge-m3 revision cố định và Chroma cosine. BM25 đọc đúng snapshot chunk của Chroma.
 
-```bash
-python -m src.task3_convert_markdown
+```powershell
+.\.venv\Scripts\python.exe -m src.task4_chunking_indexing
+.\.venv\Scripts\python.exe -m src.task5_semantic_search
+.\.venv\Scripts\python.exe -m src.task6_lexical_search
+.\.venv\Scripts\python.exe -m src.verify_retrieval
+.\.venv\Scripts\python.exe -m pytest tests/test_contracts.py tests/test_retrieval.py -q
 ```
 
-Trong repo có setup sẵn marktidown, các bạn tùy ý sử dụng công cụ khác
+Index cuối có 2.079 chunk. `data/index/` và `chroma_db/` là artifact sinh lại, không cần đưa vào commit.
 
-## 5. Chunk, embedding và index
+## 4. RRF và fallback
 
-```bash
-python -m src.task4_chunking_indexing
+Task 7 gộp dense/BM25 bằng `1 / (60 + rank)`, rank bắt đầu từ 1, copy kết quả trước khi đổi score và chạy RRF đúng một lần trong Task 9. Fallback PageIndex được bọc timeout/cache/parse; lỗi provider giữ hybrid result và không làm UI crash.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.task7_reranking
+.\.venv\Scripts\python.exe -m src.calibrate_retrieval --threshold 0.60
+.\.venv\Scripts\python.exe -m src.verify_hybrid
+.\.venv\Scripts\python.exe -m pytest tests/test_hybrid.py tests/test_pageindex.py -q
 ```
 
-## 6. Xây dựng hybrid retrieval
+Threshold production là `0.60`, được chọn từ probe trong chủ đề và ngoài chủ đề. A/B evaluation đặt threshold `-1.0` để không gọi fallback và chỉ đo khác biệt retrieval.
 
-- Task 5: semantic search từ ChromaDB.
-- Task 6: BM25 trên cùng corpus chunks.
-- Task 7: RRF gộp hai bảng xếp hạng theo ID.
+## 5. Generation và Streamlit
 
-```bash
-python -m src.task5_semantic_search
-python -m src.task6_lexical_search
-python -m src.task7_reranking
-```
+`src/task10_generation.py` format context có title/source/page, kiểm tra quote trong chunk, verifier claim và tự gắn citation từ `sources`. Không có evidence thì trả safe refusal với `sources=[]` và `retrieval_source="none"`.
 
-Về rerank là không bắt buộc, các bận có thể sử dụng Jina, hoặc tự self host BGE (hoặc không làm)
-
-## 7. Hoàn thiện fallback và retrieval pipeline
-
-- Task 8 trả `retrieval_method="pageindex"`.
-- Task 9 chỉ chạy RRF một lần.
-- Calibrate threshold bằng query đúng domain và query ngoài domain.
-- Dùng dense cosine score gốc để quyết định fallback.
-
-## 8. Generation có citation
-
-Hoàn thiện Task 10:
-
-- Reorder chunks nhưng không làm mất ID.
-- Context có title/source.
-- Dispatch theo `LLM_PROVIDER`: OpenAI, Gemini hoặc Anthropic Claude.
-- Không đủ evidence thì trả safe refusal.
-
-```bash
-python -m src.task10_generation
-```
-
-**Hoàn thành khi:** answer đúng `GenerationResult` và citation map được về `sources`.
-
-## 9. Chatbot và evaluation
-
-```bash
+```powershell
+.\.venv\Scripts\python.exe -m src.task10_generation
 streamlit run app.py
 ```
 
-- UI hiển thị answer, source, retrieval method và score.
-- Tạo ít nhất 15 golden Q&A dựa trên corpus.
-- Chạy 4 metric: faithfulness, answer relevance, context recall, context precision.
-- So sánh dense-only với hybrid + RRF trên cùng cấu hình còn lại.
-- Điền `group_project/evaluation/RESULT.md`.
+Kiểm tra một câu hỏi trong chủ đề và một câu hỏi ngoài corpus. UI phải hiển thị answer, citation, URL, method, score và evidence quote; lịch sử chat phải render lại được nguồn.
 
-**Hoàn thành khi:** chatbot chạy end-to-end và báo cáo không còn placeholder.
+## 6. Evaluation A/B
 
-## 10. Kiểm tra và nộp bài
+Golden dataset có 17 case được tạo từ chunk thực tế. Hai cấu hình giữ nguyên corpus, generator, evaluator, prompt và `top_k=5`:
 
-```bash
-pytest tests/test_contracts.py -q
-pytest tests/test_acceptance.py -q
-pytest -q
+- Config A: dense-only.
+- Config B: dense + BM25 + RRF.
+
+```powershell
+.\.venv\Scripts\python.exe -m src.evaluate_ab
+.\.venv\Scripts\python.exe -m pytest tests/test_evaluation.py -q
 ```
 
-- Mỗi thành viên hoàn thiện individual report.
-- Kiểm tra repository không chứa `.env`, API key hoặc file cache.
-- Demo một query đúng, một query ngoài domain và kết quả A/B.
+Kết quả, delta B−A, latency, ba case kém nhất và recommendation nằm trong [`../group_project/evaluation/RESULT.md`](../group_project/evaluation/RESULT.md).
+
+## 7. Kiểm tra trước khi nộp
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_contracts.py -q
+.\.venv\Scripts\python.exe -m pytest tests/test_acceptance.py -q
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m pip check
+git diff --check
+git status --short
+```
+
+Suite hiện đạt 86 test; acceptance đạt 5 test. Báo cáo cá nhân dùng tên `reports/K4-L3B-MSSV-Name.md`. Trước khi commit, kiểm tra `.env`, cache PageIndex và artifact local vẫn được Git ignore. Nhánh làm việc là `work/rag-pipeline`.

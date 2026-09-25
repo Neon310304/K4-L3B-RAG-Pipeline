@@ -1,41 +1,50 @@
-"""
-Task 5 — Semantic search.
+"""Dense retrieval using Task 4's exact encoder and Chroma cosine distance."""
 
-Embed query bằng chính hàm của Task 4, query ChromaDB và đổi cosine distance
-thành similarity. Output phải theo SearchResult, sort giảm dần và không quá top_k.
-"""
+import argparse
+import json
+import math
 
-from .task4_chunking_indexing import embed_texts, get_collection
+from .contracts import validate_search_results
+from .task4_chunking_indexing import embed_texts, ensure_ready, get_collection
 
 
 def semantic_search(query: str, top_k: int = 10) -> list[dict]:
-    """Trả về dense SearchResult theo score giảm dần."""
-    # TODO: Implement semantic search.
-    #
-    # query_vector = embed_texts([query])[0]
-    # response = get_collection().query(
-    #     query_embeddings=[query_vector],
-    #     n_results=top_k,
-    #     include=["documents", "metadatas", "distances"],
-    # )
-    # results = []
-    # for item_id, content, metadata, distance in zip(
-    #     response["ids"][0],
-    #     response["documents"][0],
-    #     response["metadatas"][0],
-    #     response["distances"][0],
-    # ):
-    #     results.append({
-    #         "id": item_id,
-    #         "content": content,
-    #         "score": max(0.0, 1.0 - distance),
-    #         "metadata": metadata,
-    #         "retrieval_method": "dense",
-    #     })
-    # return sorted(results, key=lambda item: item["score"], reverse=True)[:top_k]
-    raise NotImplementedError("Implement semantic_search")
+    if not isinstance(query, str):
+        raise TypeError("query must be a string")
+    if isinstance(top_k, bool) or not isinstance(top_k, int):
+        raise TypeError("top_k must be an integer")
+    if not query.strip() or top_k <= 0:
+        return []
+    collection = get_collection()
+    ensure_ready(collection)
+    count = collection.count() if hasattr(collection, "count") else top_k
+    if not count:
+        return []
+    response = collection.query(query_embeddings=embed_texts([query.strip()]),
+        n_results=min(top_k, count), include=["documents", "metadatas", "distances"])
+    unique = {}
+    for identifier, content, raw_metadata, distance in zip(
+        response["ids"][0], response["documents"][0], response["metadatas"][0],
+        response["distances"][0], strict=True,
+    ):
+        if not math.isfinite(float(distance)):
+            raise ValueError("Chroma returned a non-finite cosine distance")
+        metadata = dict(raw_metadata)
+        metadata.setdefault("url", None)
+        # Preserve the true cosine range [-1, 1] for later threshold calibration.
+        score = max(-1.0, min(1.0, 1.0 - float(distance)))
+        item = {"id": identifier, "content": content, "metadata": metadata,
+                "score": score, "retrieval_method": "dense"}
+        if identifier not in unique or score > unique[identifier]["score"]:
+            unique[identifier] = item
+    results = sorted(unique.values(), key=lambda item: (-item["score"], item["id"]))[:top_k]
+    validate_search_results(results, top_k=top_k, expected_method="dense")
+    return results
 
 
 if __name__ == "__main__":
-    for result in semantic_search("test query", top_k=3):
-        print(result)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("query", nargs="?", default="How long must a password be when used as the only authentication factor?")
+    parser.add_argument("--top-k", type=int, default=3)
+    args = parser.parse_args()
+    print(json.dumps(semantic_search(args.query, args.top_k), ensure_ascii=False, indent=2))

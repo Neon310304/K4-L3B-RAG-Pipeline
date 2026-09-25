@@ -1,0 +1,1108 @@
+{
+  "measured_at": "2026-09-25T05:32:51+00:00",
+  "purpose": "small routing calibration, not held-out evaluation",
+  "corpus_sha256": "c2f27eecf7515d01cfcd659154788810f38b6f7a8c7851b4fc6eb1b4171d47fa",
+  "chunk_sha256": "bbd6720bc526a569c5c2c8790feddbaca37e0fd23601f4feb60d7051364146ec",
+  "embedding": {
+    "provider": "sentence_transformers",
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "dimension": 1024,
+    "max_tokens": 512,
+    "normalize": true,
+    "prompt": ""
+  },
+  "candidate_top_k": 10,
+  "threshold": 0.6,
+  "rule": "fallback when no dense result or max(original cosine) < threshold",
+  "in_domain_min": 0.6419481039047241,
+  "out_of_domain_max": 0.5274698734283447,
+  "separating_interval": [
+    0.5274698734283447,
+    0.6419481039047241
+  ],
+  "probes": [
+    {
+      "label": "in_domain",
+      "query": "How long must a password be when used as the only authentication factor?",
+      "best_dense_score": 0.7047051191329956,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-114",
+          "content": "choose a different password. Other composition requirements for passwords SHALL NOT\nbe imposed. A rationale for this is presented in Appendix A, Strength of Passwords.\n3.1.1.2. Password Verifiers\nThe following requirements apply to passwords.\n1. Verifiers and CSPs SHALL require passwords that are used as a single-factor\nauthentication mechanism to be a minimum of 15 characters in length. Verifiers\nand CSPs MAY allow passwords that are only used as part of multi-factor",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "pdf_page": 25,
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "language": "en",
+            "chunk_index": 114,
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63b_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "doc_type": "legal",
+            "document_id": "nist-sp800-63b-4"
+          },
+          "score": 0.7047051191329956,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-115",
+          "content": "authentication processes to be shorter but SHALL require them to be a minimum\nof eight characters in length.\n2. Verifiers and CSPs SHOULD permit a maximum password length of at least 64\ncharacters.\n3. Verifiers and CSPs SHOULD accept all printing ASCII [RFC20] characters and the\nspace character in passwords.\n4. Verifiers and CSPs SHOULD accept Unicode [ISO/ISC 10646] characters in\npasswords. Each Unicode code point SHALL be counted as a single character when\nevaluating password length.",
+          "metadata": {
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "chunk_index": 115,
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "edition": "Revision 4, final, July 2025",
+            "document_id": "nist-sp800-63b-4",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "doc_type": "legal",
+            "source": "nist_sp_800_63b_4.md",
+            "pdf_page": 25,
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "language": "en"
+          },
+          "score": 0.6753617525100708,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-95",
+          "content": "authentication factors used for authentication:\n• Something you know (e.g., a password)\n• Something you have (e.g., a device containing a cryptographic key)\n• Something you are (e.g., a fingerprint or other biometric characteristic data)\nSingle-factor authentication requires only one of the above factors, most often\n“something you know.” Multiple instances of the same factor still constitute single-factor\nauthentication. For example, a user-generated PIN and a password do not constitute two",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "chunk_index": 95,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "language": "en",
+            "source": "nist_sp_800_63_4.md",
+            "document_id": "nist-sp800-63-4",
+            "doc_type": "legal",
+            "edition": "Revision 4, final, July 2025",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "pdf_page": 21,
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d"
+          },
+          "score": 0.6490614414215088,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "in_domain",
+      "query": "Mật khẩu dùng làm yếu tố xác thực duy nhất cần dài tối thiểu bao nhiêu ký tự?",
+      "best_dense_score": 0.6606676578521729,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-115",
+          "content": "authentication processes to be shorter but SHALL require them to be a minimum\nof eight characters in length.\n2. Verifiers and CSPs SHOULD permit a maximum password length of at least 64\ncharacters.\n3. Verifiers and CSPs SHOULD accept all printing ASCII [RFC20] characters and the\nspace character in passwords.\n4. Verifiers and CSPs SHOULD accept Unicode [ISO/ISC 10646] characters in\npasswords. Each Unicode code point SHALL be counted as a single character when\nevaluating password length.",
+          "metadata": {
+            "source": "nist_sp_800_63b_4.md",
+            "language": "en",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "document_id": "nist-sp800-63b-4",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "chunk_index": 115,
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "pdf_page": 25
+          },
+          "score": 0.6606676578521729,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-161",
+          "content": "The verifier SHALL generate random authentication secrets that are at least six decimal\ndigits (or equivalent) in length using an approved random bit generator as described\nin Sec. 3.2.12. If the authentication secret is less than 64 bits long, the verifier SHALL\nimplement a rate-limiting mechanism that effectively limits the total number of\nconsecutive failed authentication attempts that can be made on the subscriber account",
+          "metadata": {
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63b_4.md",
+            "pdf_page": 33,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "language": "en",
+            "document_id": "nist-sp800-63b-4",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "chunk_index": 161
+          },
+          "score": 0.6568776369094849,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-114",
+          "content": "choose a different password. Other composition requirements for passwords SHALL NOT\nbe imposed. A rationale for this is presented in Appendix A, Strength of Passwords.\n3.1.1.2. Password Verifiers\nThe following requirements apply to passwords.\n1. Verifiers and CSPs SHALL require passwords that are used as a single-factor\nauthentication mechanism to be a minimum of 15 characters in length. Verifiers\nand CSPs MAY allow passwords that are only used as part of multi-factor",
+          "metadata": {
+            "pdf_page": 25,
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "doc_type": "legal",
+            "chunk_index": 114,
+            "language": "en",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "document_id": "nist-sp800-63b-4",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "edition": "Revision 4, final, July 2025"
+          },
+          "score": 0.6552426815032959,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "in_domain",
+      "query": "What are the three types of authentication factors?",
+      "best_dense_score": 0.8043564558029175,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-615",
+          "content": "authentication factor\nThe three types of authentication factors are something you know, something you have,\nand something you are. Every authenticator has one or more authentication factors.",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "pdf_page": 114,
+            "language": "en",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "chunk_index": 615,
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "document_id": "nist-sp800-63b-4",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "source": "nist_sp_800_63b_4.md",
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal"
+          },
+          "score": 0.8043564558029175,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-363",
+          "content": "failure.\nauthentication factor\nThe three types of authentication factors are something you know, something you have,\nand something you are. Every authenticator has one or more authentication factors.\nauthentication intent\nThe process of confirming the claimant’s intent to authenticate or reauthenticate by\nrequiring user intervention in the authentication flow. Some authenticators (e.g., OTPs)\nestablish authentication intent as part of their operation. Others require a specific step",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "source": "nist_sp_800_63_4.md",
+            "document_id": "nist-sp800-63-4",
+            "edition": "Revision 4, final, July 2025",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "doc_type": "legal",
+            "pdf_page": 75,
+            "language": "en",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "chunk_index": 363,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md"
+          },
+          "score": 0.7741146087646484,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-95",
+          "content": "authentication factors used for authentication:\n• Something you know (e.g., a password)\n• Something you have (e.g., a device containing a cryptographic key)\n• Something you are (e.g., a fingerprint or other biometric characteristic data)\nSingle-factor authentication requires only one of the above factors, most often\n“something you know.” Multiple instances of the same factor still constitute single-factor\nauthentication. For example, a user-generated PIN and a password do not constitute two",
+          "metadata": {
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "document_id": "nist-sp800-63-4",
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63_4.md",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "language": "en",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "pdf_page": 21,
+            "chunk_index": 95,
+            "doc_type": "legal"
+          },
+          "score": 0.731045663356781,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "in_domain",
+      "query": "NIST SP 800-63B-4 phishing resistance",
+      "best_dense_score": 0.7158931493759155,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-242",
+          "content": "3.2.5. Phishing Resistance\nPhishing attacks, previously referred to in SP 800-63B as “verifier impersonation,” are\nattempts by fraudulent verifiers and RPs to fool an unwary claimant into presenting an\nauthenticator to an impostor. In some prior versions of SP 800-63, protocols that are\nresistant to phishing attacks were also referred to as “strongly MitM-resistant.”\nIn this document, phishing resistance is the ability of the authentication protocol to",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "language": "en",
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal",
+            "chunk_index": 242,
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "document_id": "nist-sp800-63b-4",
+            "pdf_page": 46,
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management"
+          },
+          "score": 0.7158931493759155,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing_resistance::chunk-20",
+          "content": "For more information on phishing resistant authenticators, please read and comment on our [Draft Fourth Revision of NIST SP 800-63, *Digital Identity Guideline*](https://csrc.nist.gov/publications/detail/sp/800-63/4/draft)*s* by **11:59pm on Friday, March 24, 2023.**",
+          "metadata": {
+            "doc_type": "news",
+            "standardized_sha256": "fb3ab35ddfeb21ccd0a68ca2ab9a8d1e465147b9368e0d78f1e5fc4b5b5e6cf7",
+            "language": "en",
+            "standardized_file": "data/standardized/news/nist_phishing_resistance.md",
+            "landing_file": "data/landing/news/nist_phishing_resistance.json",
+            "title": "Phishing Resistance – Protecting the Keys to Your Kingdom",
+            "source": "nist_phishing_resistance.md",
+            "document_id": "nist_phishing_resistance",
+            "date_crawled": "2026-09-25T04:15:00+00:00",
+            "url": "https://www.nist.gov/blogs/cybersecurity-insights/phishing-resistance-protecting-keys-your-kingdom",
+            "chunk_index": 20,
+            "landing_sha256": "ca849aa54c6a84085abaf7e2c50298b7f35813515566837487dc868078dfa525"
+          },
+          "score": 0.6955648064613342,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-244",
+          "content": "Approved cryptographic algorithms SHALL be used to establish phishing resistance\nwhere required. Keys used for this purpose SHALL provide at least the minimum security\nstrength specified in the latest revision of [SP800-131A] (i.e., 112 bits as of the date of\nthis publication).\nPhishing resistance requires single- or multi-factor cryptographic authentication.\nAuthenticators that involve the manual entry of an authenticator output (e.g., out-of-",
+          "metadata": {
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "pdf_page": 46,
+            "doc_type": "legal",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "document_id": "nist-sp800-63b-4",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "source": "nist_sp_800_63b_4.md",
+            "chunk_index": 244,
+            "language": "en",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "edition": "Revision 4, final, July 2025"
+          },
+          "score": 0.620245099067688,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "in_domain",
+      "query": "Tôi cần làm gì sau khi bị lừa đảo phishing?",
+      "best_dense_score": 0.8787051439285278,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist_phishing::chunk-10",
+          "content": "**What should I do if I think I’ve been a victim of a phishing attack?**",
+          "metadata": {
+            "chunk_index": 10,
+            "title": "Phishing",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "standardized_file": "data/standardized/news/nist_phishing.md",
+            "doc_type": "news",
+            "source": "nist_phishing.md",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "document_id": "nist_phishing",
+            "language": "en",
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be"
+          },
+          "score": 0.8787051439285278,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing::chunk-5",
+          "content": "**How Can I Protect My Business from Phishing?**",
+          "metadata": {
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "chunk_index": 5,
+            "source": "nist_phishing.md",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "language": "en",
+            "doc_type": "news",
+            "title": "Phishing",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "standardized_file": "data/standardized/news/nist_phishing.md",
+            "document_id": "nist_phishing"
+          },
+          "score": 0.7411555051803589,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing::chunk-7",
+          "content": "- Don’t engage with the sender, and do not click any link in the email (including unsubscribe). Just delete the message. You can report phishing crimes to the FBI’s Internet Crime Complaint Center.\n- Deploy and maintain anti-virus software – if the phishing attack aims to install malware on your computer, up-to-date anti-virus software may help prevent the malware from installing.",
+          "metadata": {
+            "document_id": "nist_phishing",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "doc_type": "news",
+            "title": "Phishing",
+            "chunk_index": 7,
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "language": "en",
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "source": "nist_phishing.md",
+            "standardized_file": "data/standardized/news/nist_phishing.md"
+          },
+          "score": 0.6906958818435669,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "in_domain",
+      "query": "audience restriction FAL2 assertions",
+      "best_dense_score": 0.6419481039047241,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63c-4::chunk-309",
+          "content": "3.13.4. Audience Restriction\nAssertions SHALL use audience restriction techniques to allow an RP to recognize\nwhether it is the intended target of an issued assertion. All RPs SHALL check that the\naudience of an assertion contains an identifier for their RP to prevent the assertion\ninjection and replay of an assertion generated for one RP at another RP.\nIn order to limit the places that an assertion could successfully be replayed by an",
+          "metadata": {
+            "source": "nist_sp_800_63c_4.md",
+            "edition": "Revision 4, final, July 2025",
+            "title": "NIST SP 800-63C-4: Federation and Assertions",
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md",
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c",
+            "doc_type": "legal",
+            "language": "en",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "chunk_index": 309,
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "document_id": "nist-sp800-63c-4",
+            "pdf_page": 56,
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb"
+          },
+          "score": 0.6419481039047241,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63c-4::chunk-72",
+          "content": "| Requirement | FAL1 | FAL2 | FAL3 |\n| --- | --- | --- | --- |\n| Audience Restriction | Multiple RPs allowed per assertion; single RP per assertion recommended | Single RP per assertion | Single RP per assertion |\n| Replay Protection | Required per RP | Required | Required |\n| Assertion Injection Protection | Recommended for all transactions | Required; transaction begins at the RP | Required; transaction begins at the RP |",
+          "metadata": {
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "source": "nist_sp_800_63c_4.md",
+            "document_id": "nist-sp800-63c-4",
+            "doc_type": "legal",
+            "language": "en",
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c",
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb",
+            "edition": "Revision 4, final, July 2025",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "pdf_page": 18,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md",
+            "chunk_index": 72,
+            "title": "NIST SP 800-63C-4: Federation and Assertions"
+          },
+          "score": 0.6298239231109619,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63c-4::chunk-777",
+          "content": "“December 1, 1980.”\naudience restriction\nThe restriction of a message to a specific target audience to prevent a receiver from\nunknowingly processing a message that is intended for another recipient. In federation\nprotocols, assertions are audience-restricted to specific RPs to prevent an RP from\naccepting an assertion that was generated for a different RP.\nauthenticate\nSee authentication.",
+          "metadata": {
+            "pdf_page": 139,
+            "doc_type": "legal",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "source": "nist_sp_800_63c_4.md",
+            "language": "en",
+            "edition": "Revision 4, final, July 2025",
+            "title": "NIST SP 800-63C-4: Federation and Assertions",
+            "document_id": "nist-sp800-63c-4",
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md",
+            "chunk_index": 777,
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb",
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c"
+          },
+          "score": 0.6247377395629883,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "How do I bake a chocolate cake?",
+      "best_dense_score": 0.3921579122543335,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-505",
+          "content": "alternative authentication strategies.",
+          "metadata": {
+            "chunk_index": 505,
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "document_id": "nist-sp800-63b-4",
+            "source": "nist_sp_800_63b_4.md",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "language": "en",
+            "pdf_page": 91,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "doc_type": "legal",
+            "edition": "Revision 4, final, July 2025",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf"
+          },
+          "score": 0.3921579122543335,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-624",
+          "content": "the challenge and a shared secret together or by applying a private-key operation\nto the challenge) to generate a response that is sent to the verifier. The verifier can\nindependently verify the response generated by the claimant (e.g., by recomputing\nthe hash of the challenge and the shared secret and comparing it to the response or\nperforming a public-key operation on the response) and establish that the claimant\npossesses and controls the secret.\nclaimant",
+          "metadata": {
+            "document_id": "nist-sp800-63b-4",
+            "chunk_index": 624,
+            "language": "en",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "pdf_page": 116,
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "edition": "Revision 4, final, July 2025",
+            "source": "nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "date_crawled": "2026-09-25T04:14:50+00:00"
+          },
+          "score": 0.39023590087890625,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-375",
+          "content": "to the challenge) to generate a response that is sent to the verifier. The verifier can\nindependently verify the response generated by the claimant (e.g., by recomputing\nthe hash of the challenge and the shared secret and comparing it to the response or\nperforming a public-key operation on the response) and establish that the claimant\npossesses and controls the secret.",
+          "metadata": {
+            "source": "nist_sp_800_63_4.md",
+            "edition": "Revision 4, final, July 2025",
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "chunk_index": 375,
+            "document_id": "nist-sp800-63-4",
+            "doc_type": "legal",
+            "pdf_page": 77,
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "language": "en",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf"
+          },
+          "score": 0.3808658719062805,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "Cách nấu phở bò tại nhà như thế nào?",
+      "best_dense_score": 0.35784971714019775,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-602",
+          "content": ". |",
+          "metadata": {
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "chunk_index": 602,
+            "document_id": "nist-sp800-63b-4",
+            "edition": "Revision 4, final, July 2025",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "language": "en",
+            "doc_type": "legal",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "pdf_page": 109,
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "source": "nist_sp_800_63b_4.md"
+          },
+          "score": 0.35784971714019775,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing::chunk-10",
+          "content": "**What should I do if I think I’ve been a victim of a phishing attack?**",
+          "metadata": {
+            "standardized_file": "data/standardized/news/nist_phishing.md",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "language": "en",
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "document_id": "nist_phishing",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "source": "nist_phishing.md",
+            "doc_type": "news",
+            "chunk_index": 10,
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "title": "Phishing",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be"
+          },
+          "score": 0.3572099208831787,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing::chunk-5",
+          "content": "**How Can I Protect My Business from Phishing?**",
+          "metadata": {
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be",
+            "document_id": "nist_phishing",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "title": "Phishing",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "language": "en",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "doc_type": "news",
+            "source": "nist_phishing.md",
+            "standardized_file": "data/standardized/news/nist_phishing.md",
+            "chunk_index": 5
+          },
+          "score": 0.35328972339630127,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "What is the capital of Australia?",
+      "best_dense_score": 0.37272143363952637,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63c-4::chunk-510",
+          "content": "|  |  |  |  |  |",
+          "metadata": {
+            "title": "NIST SP 800-63C-4: Federation and Assertions",
+            "pdf_page": 93,
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "source": "nist_sp_800_63c_4.md",
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c",
+            "doc_type": "legal",
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb",
+            "language": "en",
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "edition": "Revision 4, final, July 2025",
+            "chunk_index": 510,
+            "document_id": "nist-sp800-63c-4",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md"
+          },
+          "score": 0.37272143363952637,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-270",
+          "content": "|  | MAY |\n| --- | --- |\n| MAY |  |",
+          "metadata": {
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "pdf_page": 54,
+            "edition": "Revision 4, final, July 2025",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "document_id": "nist-sp800-63-4",
+            "source": "nist_sp_800_63_4.md",
+            "language": "en",
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "chunk_index": 270,
+            "doc_type": "legal"
+          },
+          "score": 0.35670143365859985,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-59",
+          "content": "| MAY |  |\n| --- | --- |\n|  | MAY |",
+          "metadata": {
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal",
+            "chunk_index": 59,
+            "document_id": "nist-sp800-63b-4",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "language": "en",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "source": "nist_sp_800_63b_4.md",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "pdf_page": 15
+          },
+          "score": 0.3525816798210144,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "Explain photosynthesis in plants.",
+      "best_dense_score": 0.5274698734283447,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63-4::chunk-416",
+          "content": "the operation of the biometric system.",
+          "metadata": {
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "edition": "Revision 4, final, July 2025",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "doc_type": "legal",
+            "chunk_index": 416,
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "pdf_page": 86,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "document_id": "nist-sp800-63-4",
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "language": "en",
+            "source": "nist_sp_800_63_4.md",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca"
+          },
+          "score": 0.5274698734283447,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63-4::chunk-82",
+          "content": "appendix is informative.",
+          "metadata": {
+            "pdf_page": 18,
+            "doc_type": "legal",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "source": "nist_sp_800_63_4.md",
+            "edition": "Revision 4, final, July 2025",
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "language": "en",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "document_id": "nist-sp800-63-4",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "chunk_index": 82
+          },
+          "score": 0.4841400384902954,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-320",
+          "content": "| MAY |  |\n| --- | --- |\n|  | SHALL |\n\ndescribed in Sec. 4.6.",
+          "metadata": {
+            "language": "en",
+            "chunk_index": 320,
+            "source": "nist_sp_800_63b_4.md",
+            "doc_type": "legal",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "pdf_page": 58,
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "document_id": "nist-sp800-63b-4",
+            "edition": "Revision 4, final, July 2025"
+          },
+          "score": 0.4621236324310303,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "Giải phương trình bậc hai x^2 - 5x + 6 = 0.",
+      "best_dense_score": 0.4119156002998352,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63-4::chunk-82",
+          "content": "appendix is informative.",
+          "metadata": {
+            "standardized_file": "data/standardized/legal/nist_sp_800_63_4.md",
+            "chunk_index": 82,
+            "landing_sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+            "edition": "Revision 4, final, July 2025",
+            "doc_type": "legal",
+            "landing_file": "data/landing/legal/nist_sp_800_63_4.pdf",
+            "document_id": "nist-sp800-63-4",
+            "language": "en",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+            "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+            "pdf_page": 18,
+            "date_crawled": "2026-09-25T04:14:48+00:00",
+            "standardized_sha256": "c6234d2bf4a4b62c0d9b458445de3eab7a7ccb43d7cb5bdcfd8b612fbe7943ca",
+            "source": "nist_sp_800_63_4.md"
+          },
+          "score": 0.4119156002998352,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63c-4::chunk-114",
+          "content": "Table 2. Federation models",
+          "metadata": {
+            "document_id": "nist-sp800-63c-4",
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "pdf_page": 25,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "chunk_index": 114,
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c",
+            "edition": "Revision 4, final, July 2025",
+            "title": "NIST SP 800-63C-4: Federation and Assertions",
+            "doc_type": "legal",
+            "source": "nist_sp_800_63c_4.md",
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "language": "en",
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb"
+          },
+          "score": 0.39159196615219116,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63c-4::chunk-34",
+          "content": "5.5. Discovery and Registration . . . . . . . . . . . . . . . . . . . . . . . . . 85\n5.6. Authentication and Attribute Disclosure . . . . . . . . . . . . . . . . . . 85\n5.7. Assertion Requests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 86\n5.8. Assertion Contents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 86\n5.9. Assertion Presentation . . . . . . . . . . . . . . . . . . . . . . . . . . . 89",
+          "metadata": {
+            "language": "en",
+            "document_id": "nist-sp800-63c-4",
+            "pdf_page": 10,
+            "standardized_sha256": "bcc43ce566d08e55ba7bdc9f36041676cc12d93c713357cb6af62a9ebc6ea55c",
+            "landing_sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb",
+            "date_crawled": "2026-09-25T04:14:53+00:00",
+            "edition": "Revision 4, final, July 2025",
+            "chunk_index": 34,
+            "doc_type": "legal",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63c_4.md",
+            "source": "nist_sp_800_63c_4.md",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+            "landing_file": "data/landing/legal/nist_sp_800_63c_4.pdf",
+            "title": "NIST SP 800-63C-4: Federation and Assertions"
+          },
+          "score": 0.3845008611679077,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "out_of_domain",
+      "query": "How do I replace a bicycle tire?",
+      "best_dense_score": 0.4563421607017517,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist_phishing::chunk-10",
+          "content": "**What should I do if I think I’ve been a victim of a phishing attack?**",
+          "metadata": {
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "doc_type": "news",
+            "chunk_index": 10,
+            "title": "Phishing",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be",
+            "source": "nist_phishing.md",
+            "document_id": "nist_phishing",
+            "landing_file": "data/landing/news/nist_phishing.json",
+            "language": "en",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "standardized_file": "data/standardized/news/nist_phishing.md"
+          },
+          "score": 0.4563421607017517,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_phishing::chunk-5",
+          "content": "**How Can I Protect My Business from Phishing?**",
+          "metadata": {
+            "standardized_file": "data/standardized/news/nist_phishing.md",
+            "standardized_sha256": "d4a220d5db01dfd824acc1a9b30702e34aa928b2be5edbac258ec120221851be",
+            "landing_sha256": "4a0f06d617c69705f7f079d1fbfc2d4676cb5dd55aab2543296876fe95a59e19",
+            "doc_type": "news",
+            "source": "nist_phishing.md",
+            "title": "Phishing",
+            "chunk_index": 5,
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+            "language": "en",
+            "document_id": "nist_phishing",
+            "date_crawled": "2026-09-25T04:14:58+00:00",
+            "landing_file": "data/landing/news/nist_phishing.json"
+          },
+          "score": 0.4320916533470154,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-319",
+          "content": "to the subscriber. The recovery code SHALL include at least 64 bits from an approved\nrandom bit generator. The saved recovery code may be presented as numeric or a\nprintable ASCII representation (e.g., Base64) for manual entry or as a machine-readable\noptical label (e.g., QR code) that contains the recovery code. At any point following\nenrollment, the subscriber request a replacement recovery code. The issuance",
+          "metadata": {
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "document_id": "nist-sp800-63b-4",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "pdf_page": 58,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "doc_type": "legal",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "chunk_index": 319,
+            "language": "en",
+            "edition": "Revision 4, final, July 2025"
+          },
+          "score": 0.4240763187408447,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "unsupported_near_domain",
+      "query": "What is the password of my personal email account?",
+      "best_dense_score": 0.6342175006866455,
+      "fallback_expected": false,
+      "dense_top_3": [
+        {
+          "id": "nist-sp800-63b-4::chunk-462",
+          "content": "8.1.2.1. Passwords\nTypical Usage\nUsers often manually input the password (sometimes referred to as a passphrase or\nPIN). Alternatively, they may use a password manager to select a secure password\nand maintain distinct passwords for each authenticated service. The use of distinct\npasswords is important to avoid “password stuffing” attacks in which an attacker uses\na compromised password from one site to access the user’s account on other sites.",
+          "metadata": {
+            "doc_type": "legal",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "document_id": "nist-sp800-63b-4",
+            "edition": "Revision 4, final, July 2025",
+            "pdf_page": 83,
+            "source": "nist_sp_800_63b_4.md",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "chunk_index": 462,
+            "language": "en"
+          },
+          "score": 0.6342175006866455,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_good_password::chunk-32",
+          "content": "To sum up, if you must create a password, don’t choose “password”! And more importantly, don’t use a password alone — take advantage of other steps to secure your account, such as multifactor authentication. These additional steps are the true key for securing your account as best as possible.\n\n---",
+          "metadata": {
+            "title": "How Do I Create a Good Password?",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "document_id": "nist_good_password",
+            "language": "en",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "source": "nist_good_password.md",
+            "doc_type": "news",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "chunk_index": 32
+          },
+          "score": 0.624940812587738,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_good_password::chunk-12",
+          "content": ". You can check if any of the passwords you use have been compromised by using a tool like [Have I Been Pwned?](https://haveibeenpwned.com/) This free website lets you see if your email address has been part of a data breach. Almost everyone has been “pwned” once.",
+          "metadata": {
+            "title": "How Do I Create a Good Password?",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "language": "en",
+            "doc_type": "news",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "chunk_index": 12,
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "source": "nist_good_password.md",
+            "document_id": "nist_good_password",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0"
+          },
+          "score": 0.6207478642463684,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "unsupported_near_domain",
+      "query": "What exact buttons should I press to enable MFA in the current Instagram app?",
+      "best_dense_score": 0.5890408158302307,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist_good_password::chunk-15",
+          "content": "MFA comes in many forms, such as USB dongles, authenticator apps, push notifications or text message codes. When MFA is turned on, a hacker would need to not only compromise your password but also gain control of the second factor. This second factor is much harder to compromise since it is typically something physically in your possession, like your phone",
+          "metadata": {
+            "language": "en",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "chunk_index": 15,
+            "document_id": "nist_good_password",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "title": "How Do I Create a Good Password?",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "source": "nist_good_password.md",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "doc_type": "news"
+          },
+          "score": 0.5890408158302307,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_good_password::chunk-14",
+          "content": "## What is multifactor authentication?\n\nIf the app or website you’re using requires a password to log in, you should check if it gives you the option to turn on something known as multifactor authentication, or MFA. MFA provides an extra layer of security that can help protect a user’s account even if their password is compromised.",
+          "metadata": {
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "document_id": "nist_good_password",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "language": "en",
+            "source": "nist_good_password.md",
+            "chunk_index": 14,
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "title": "How Do I Create a Good Password?",
+            "doc_type": "news",
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password"
+          },
+          "score": 0.5507518649101257,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist_mfa::chunk-3",
+          "content": "## **What is Multi-Factor Authentication (MFA)?**\n\nPasswords alone are not effective in securing your most sensitive business assets, as they have become too easy for threat actors to access. MFA is an important security enhancement that requires a user to verify their identity by providing more than just a username and password. It requires a user to provide a combination of two or more of the following:",
+          "metadata": {
+            "standardized_file": "data/standardized/news/nist_mfa.md",
+            "doc_type": "news",
+            "landing_file": "data/landing/news/nist_mfa.json",
+            "standardized_sha256": "69904ee6a0ae707fb2ea5ae8890b616e4f46c90b2dc50cb1310edd723202e531",
+            "landing_sha256": "0984726a320fb230fc9d6bf7cee1d2e0d9c994b533454adb993f6ee2dace69f3",
+            "source": "nist_mfa.md",
+            "document_id": "nist_mfa",
+            "date_crawled": "2026-09-25T04:14:57+00:00",
+            "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+            "title": "Multi-Factor Authentication",
+            "chunk_index": 3,
+            "language": "en"
+          },
+          "score": 0.5334143042564392,
+          "retrieval_method": "dense"
+        }
+      ]
+    },
+    {
+      "label": "unsupported_near_domain",
+      "query": "Which password manager has the cheapest family subscription today?",
+      "best_dense_score": 0.5086988806724548,
+      "fallback_expected": true,
+      "dense_top_3": [
+        {
+          "id": "nist_good_password::chunk-21",
+          "content": "However, password managers still require a login. Since that login protects all your passwords, it’s important to choose a password manager that supports MFA to ensure that it is as secure as possible.\n\nIf you can’t use MFA, a passkey or a password manager and you need to come up with a password on your own, NIST researchers have some recommendations.\n\n## What is NIST’s guidance for passwords?",
+          "metadata": {
+            "language": "en",
+            "landing_sha256": "99051cca4acac228cab35f2d1bfea01c224f57c705c694f923c332d564a21628",
+            "doc_type": "news",
+            "chunk_index": 21,
+            "url": "https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password",
+            "landing_file": "data/landing/news/nist_good_password.json",
+            "title": "How Do I Create a Good Password?",
+            "date_crawled": "2026-09-25T04:14:55+00:00",
+            "source": "nist_good_password.md",
+            "standardized_sha256": "a0b956dc8eb1014a6f2bfb21103ba3baa7d4408fa0514476e8e9a7cc9a5e33f0",
+            "standardized_file": "data/standardized/news/nist_good_password.md",
+            "document_id": "nist_good_password"
+          },
+          "score": 0.5086988806724548,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-464",
+          "content": "password needed for a particular RP.\n– The memory burden is greater for a less frequently used password.\nUsability considerations for typical usage with a password manager include:\n• Ease of entry\n– Support autofill functionality to allow for the safe retrieval of secrets from\npassword managers.\n– Support copy and paste functionality in fields for entering passwords,\nincluding passphrases.\nIntermittent Events\nUsability considerations for intermittent events include:",
+          "metadata": {
+            "language": "en",
+            "edition": "Revision 4, final, July 2025",
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "source": "nist_sp_800_63b_4.md",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "pdf_page": 83,
+            "doc_type": "legal",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "chunk_index": 464,
+            "document_id": "nist-sp800-63b-4",
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7"
+          },
+          "score": 0.5084553956985474,
+          "retrieval_method": "dense"
+        },
+        {
+          "id": "nist-sp800-63b-4::chunk-505",
+          "content": "alternative authentication strategies.",
+          "metadata": {
+            "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+            "date_crawled": "2026-09-25T04:14:50+00:00",
+            "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+            "language": "en",
+            "doc_type": "legal",
+            "edition": "Revision 4, final, July 2025",
+            "landing_file": "data/landing/legal/nist_sp_800_63b_4.pdf",
+            "pdf_page": 91,
+            "standardized_sha256": "51a3b79a9151ca1df8fa1b86d1633eac341143ac18f3fded3d9b38ab0569d6d7",
+            "landing_sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+            "chunk_index": 505,
+            "standardized_file": "data/standardized/legal/nist_sp_800_63b_4.md",
+            "document_id": "nist-sp800-63b-4",
+            "source": "nist_sp_800_63b_4.md"
+          },
+          "score": 0.47957944869995117,
+          "retrieval_method": "dense"
+        }
+      ]
+    }
+  ]
+}

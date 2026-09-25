@@ -1,13 +1,9 @@
-"""
-Task 7 — Reciprocal Rank Fusion.
+"""Reciprocal Rank Fusion: combine ranks, never cosine and BM25 magnitudes."""
 
-RRF gộp nhiều bảng xếp hạng mà không cộng trực tiếp cosine score với BM25
-score. Công thức: RRF(d) = sum(1 / (k + rank)), rank bắt đầu từ 1.
+import copy
+import json
 
-Lưu ý: RRF score chỉ phản ánh thứ hạng, không dùng để quyết định fallback.
-
--> Dùng Jina hoặc self host hoặc bất cứ công cụ nào bạn quen
-"""
+from .contracts import validate_search_results
 
 
 def rerank_rrf(
@@ -15,27 +11,44 @@ def rerank_rrf(
     top_k: int = 5,
     k: int = 60,
 ) -> list[dict]:
-    """Fuse nhiều ranked lists và trả hybrid SearchResult."""
-    # TODO: Implement RRF.
-    #
-    # scores = {}
-    # items = {}
-    # for ranked_list in ranked_lists:
-    #     for rank, item in enumerate(ranked_list, 1):
-    #         item_id = item["id"]
-    #         scores[item_id] = scores.get(item_id, 0.0) + 1 / (k + rank)
-    #         items[item_id] = item
-    #
-    # ranked_ids = sorted(scores, key=scores.get, reverse=True)
-    # results = []
-    # for item_id in ranked_ids[:top_k]:
-    #     result = items[item_id].copy()
-    #     result["score"] = scores[item_id]
-    #     result["retrieval_method"] = "hybrid"
-    #     results.append(result)
-    # return results
-    raise NotImplementedError("Implement rerank_rrf")
+    """Fuse independent rankings, preserving the source items and metadata."""
+    if isinstance(top_k, bool) or not isinstance(top_k, int):
+        raise TypeError("top_k must be an integer")
+    if isinstance(k, bool) or not isinstance(k, int) or k < 0:
+        raise ValueError("RRF k must be a non-negative integer")
+    if top_k <= 0:
+        return []
+    scores, items = {}, {}
+    for ranked_list in ranked_lists:
+        # Duplicate IDs inside one ranking are an upstream bug, not extra votes.
+        validate_search_results(ranked_list)
+        for rank, item in enumerate(ranked_list, start=1):
+            identifier = item["id"]
+            if identifier in items and (
+                items[identifier]["content"] != item["content"]
+                or items[identifier]["metadata"] != item["metadata"]
+            ):
+                raise ValueError(f"Conflicting content/metadata for shared ID: {identifier}")
+            items.setdefault(identifier, item)
+            scores[identifier] = scores.get(identifier, 0.0) + 1.0 / (k + rank)
+    results = []
+    for identifier in sorted(scores, key=lambda key: (-scores[key], key))[:top_k]:
+        fused = copy.deepcopy(items[identifier])
+        fused["score"] = scores[identifier]
+        fused["retrieval_method"] = "hybrid"
+        results.append(fused)
+    validate_search_results(results, top_k=top_k, expected_method="hybrid")
+    return results
 
 
 if __name__ == "__main__":
-    print("Implement rerank_rrf, then run contract tests.")
+    def example(identifier, score, method):
+        return {"id": identifier, "content": "Example evidence: use MFA.",
+                "metadata": {"source": "example.md", "title": "RRF demo",
+                             "doc_type": "news", "url": None, "chunk_index": 0},
+                "score": score, "retrieval_method": method}
+
+    dense = [example("a", 0.9, "dense"), example("b", 0.8, "dense")]
+    sparse = [example("b", 7.0, "bm25"), example("c", 5.0, "bm25")]
+    print(json.dumps({"demo": "b receives 1/62 + 1/61",
+                      "results": rerank_rrf([dense, sparse], top_k=3)}, indent=2))

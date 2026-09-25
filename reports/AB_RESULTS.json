@@ -1,0 +1,1051 @@
+{
+  "evaluated_at": "2026-09-25T06:18:32+00:00",
+  "git_revision": "a23df34c17c930e95b755d250921f41969e25ee0",
+  "working_tree": "uncommitted changes present (recorded source snapshot is corpus/chunk SHA)",
+  "corpus_sha256": "c2f27eecf7515d01cfcd659154788810f38b6f7a8c7851b4fc6eb1b4171d47fa",
+  "chunk_sha256": "bbd6720bc526a569c5c2c8790feddbaca37e0fd23601f4feb60d7051364146ec",
+  "golden_dataset_size": 17,
+  "top_k": 5,
+  "embedding": {
+    "provider": "sentence_transformers",
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "dimension": 1024,
+    "max_tokens": 512,
+    "normalize": true,
+    "prompt": ""
+  },
+  "shared_prompt": "Answer only from retrieved context; do not add outside knowledge.",
+  "metric_definitions": {
+    "faithfulness": "answer token containment in retrieved context; fixed extractive answer",
+    "answer_relevance": "token F1 against expected_answer",
+    "context_recall": "expected_context IDs retrieved / expected_context IDs",
+    "context_precision": "expected_context IDs / retrieved top_k IDs"
+  },
+  "config_a": {
+    "name": "dense-only",
+    "use_reranking": false,
+    "score_threshold": -1.0,
+    "top_k": 5,
+    "latency_seconds": 2.031,
+    "metrics": {
+      "faithfulness": 1.0,
+      "answer_relevance": 0.037109,
+      "context_recall": 0.794118,
+      "context_precision": 0.188235,
+      "average": 0.504865
+    },
+    "cases": [
+      {
+        "id": "password-single-factor-length",
+        "question": "Mật khẩu dùng làm cơ chế xác thực một yếu tố phải dài tối thiểu bao nhiêu ký tự?",
+        "expected_answer": "NIST yêu cầu mật khẩu dùng cho xác thực một yếu tố có tối thiểu 15 ký tự.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-114"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-115",
+          "nist-sp800-63b-4::chunk-265",
+          "nist-sp800-63b-4::chunk-161",
+          "nist-sp800-63b-4::chunk-114",
+          "nist-sp800-63b-4::chunk-171"
+        ],
+        "answer": "authentication processes to be shorter but SHALL require them to be a minimum authenticator and its associated user endpoint.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7122765183448792,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-mfa-length-and-maximum",
+        "question": "Với mật khẩu chỉ dùng trong xác thực đa yếu tố, độ dài tối thiểu là bao nhiêu và verifier nên cho phép tối đa bao nhiêu?",
+        "expected_answer": "Mật khẩu chỉ dùng trong xác thực đa yếu tố phải có ít nhất 8 ký tự; verifier nên cho phép độ dài tối đa ít nhất 64 ký tự.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-115"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-114",
+          "nist-sp800-63b-4::chunk-115",
+          "nist-sp800-63b-4::chunk-161",
+          "nist-sp800-63b-4::chunk-266",
+          "nist-sp800-63b-4::chunk-127"
+        ],
+        "answer": "Other composition requirements for passwords SHALL NOT authentication processes to be shorter but SHALL require them to be a minimum",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7355780005455017,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "authentication-factor-types",
+        "question": "Ba loại yếu tố xác thực theo NIST là gì?",
+        "expected_answer": "Ba loại là thứ bạn biết, thứ bạn có và thứ thuộc về bạn.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-615"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-615",
+          "nist-sp800-63-4::chunk-3",
+          "nist-sp800-63b-4::chunk-3",
+          "nist-sp800-63c-4::chunk-3",
+          "nist-sp800-63-4::chunk-363"
+        ],
+        "answer": "The three types of authentication factors are something you know, something you have, Certain equipment, instruments, software, or materials, commercial or non-commercial,",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.5150905847549438,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "mfa-definition",
+        "question": "NIST định nghĩa xác thực đa yếu tố MFA như thế nào?",
+        "expected_answer": "MFA là hệ thống yêu cầu nhiều hơn một loại yếu tố xác thực khác nhau để xác thực thành công.",
+        "expected_context": [
+          "nist-sp800-63-4::chunk-404"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63-4::chunk-96",
+          "nist-sp800-63-4::chunk-404",
+          "nist_mfa::chunk-3",
+          "nist-sp800-63b-4::chunk-642",
+          "nist_good_password::chunk-14"
+        ],
+        "answer": "factors as they are both “something you know.” Multi-factor authentication (MFA) refers web page) but may transfer through physical media as well.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.05,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.5780083537101746,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "mfa-second-factor",
+        "question": "MFA làm kẻ tấn công khó chiếm tài khoản hơn như thế nào khi mật khẩu bị lộ?",
+        "expected_answer": "Kẻ tấn công còn phải kiểm soát yếu tố thứ hai, thường là thứ người dùng đang sở hữu như điện thoại.",
+        "expected_context": [
+          "nist_good_password::chunk-15"
+        ],
+        "retrieved_ids": [
+          "nist_mfa::chunk-7",
+          "nist_good_password::chunk-15",
+          "nist_mfa::chunk-8",
+          "nist_good_password::chunk-16",
+          "nist_mfa::chunk-3"
+        ],
+        "answer": "**How does MFA Protect My Business From this Threat?** MFA comes in many forms, such as USB dongles, authenticator apps, push notifications or text message codes.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7081503868103027,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-resistance-definition",
+        "question": "Phishing resistance trong giao thức xác thực có nghĩa là gì?",
+        "expected_answer": "Đó là khả năng ngăn lộ secret xác thực và output hợp lệ cho verifier giả mạo mà không dựa vào sự cảnh giác của claimant.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-242",
+          "nist-sp800-63b-4::chunk-243"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-242",
+          "nist-sp800-63b-4::chunk-651",
+          "nist-sp800-63b-4::chunk-244",
+          "nist_phishing_resistance::chunk-11",
+          "nist-sp800-63-4::chunk-414"
+        ],
+        "answer": "Phishing attacks, previously referred to in SP 800-63B as “verifier impersonation,” are An attack in which the subscriber is lured (usually through an email) to interact with",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.05,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7351251840591431,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "otp-not-phishing-resistant",
+        "question": "Vì sao OTP phải nhập thủ công không được xem là phishing-resistant?",
+        "expected_answer": "Vì việc nhập thủ công không ràng buộc output của authenticator với đúng phiên đang xác thực, nên verifier giả có thể chuyển tiếp output.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-244",
+          "nist-sp800-63b-4::chunk-245"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-245",
+          "nist-sp800-63b-4::chunk-170",
+          "nist_mfa::chunk-11",
+          "nist_phishing_resistance::chunk-12",
+          "nist-sp800-63b-4::chunk-242"
+        ],
+        "answer": "band and OTP authenticators) SHALL NOT be considered phishing-resistant because OTP authentication is not phishing-resistant.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.6827465295791626,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "fido-authenticator-example",
+        "question": "Ví dụ phổ biến của authenticator chống phishing là gì?",
+        "expected_answer": "FIDO authenticator kết hợp với Web Authentication API của W3C là một dạng phổ biến; nó có thể là khóa phần cứng hoặc tích hợp trong điện thoại/laptop.",
+        "expected_context": [
+          "nist_mfa::chunk-10"
+        ],
+        "retrieved_ids": [
+          "nist_phishing_resistance::chunk-14",
+          "nist_mfa::chunk-10",
+          "nist_phishing_resistance::chunk-9",
+          "nist-sp800-63b-4::chunk-461",
+          "nist_phishing_resistance::chunk-11"
+        ],
+        "answer": "As complicated as this may seem, there are several practical examples of phishing resistant authenticators in place today. - FIDO authenticators paired with W3C’s Web Authentication API are the most common form of phishing resistant authenticators widely available today.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.178571,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.744733452796936,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-victim-password",
+        "question": "Nếu nghi mình là nạn nhân phishing thì nên làm gì với các mật khẩu bị ảnh hưởng?",
+        "expected_answer": "Nếu có thể, hãy đổi ngay mật khẩu của các tài khoản bị ảnh hưởng; nếu dùng lại mật khẩu đó ở nơi khác thì đổi sang mật khẩu riêng và mạnh.",
+        "expected_context": [
+          "nist_phishing::chunk-11"
+        ],
+        "retrieved_ids": [
+          "nist_phishing::chunk-10",
+          "nist_phishing::chunk-5",
+          "nist_phishing::chunk-7",
+          "nist_phishing::chunk-12",
+          "nist_phishing_resistance::chunk-4"
+        ],
+        "answer": "**What should I do if I think I’ve been a victim of a phishing attack?** **How Can I Protect My Business from Phishing?**",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 0.0,
+        "context_precision": 0.0,
+        "retrieval_trace": {
+          "best_dense_score": 0.8380659818649292,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-financial-account",
+        "question": "Nếu phishing ảnh hưởng đến tài khoản tài chính thì nên liên hệ ai và theo dõi điều gì?",
+        "expected_answer": "Hãy liên hệ ngay bộ phận gian lận của ngân hàng để báo sự cố và theo dõi giao dịch trái phép.",
+        "expected_context": [
+          "nist_phishing::chunk-12"
+        ],
+        "retrieved_ids": [
+          "nist_phishing::chunk-10",
+          "nist_phishing::chunk-12",
+          "nist_phishing::chunk-5",
+          "nist_phishing::chunk-0",
+          "nist_phishing::chunk-6"
+        ],
+        "answer": "**What should I do if I think I’ve been a victim of a phishing attack?** - **Contact the fraud department of the breached account** – If the phishing attack compromised your company’s account at a financial institution, contact the bank immediately to report the incident.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7919304966926575,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "passkey-properties",
+        "question": "Passkey khác mật khẩu ở điểm nào liên quan đến phishing và ghi nhớ?",
+        "expected_answer": "Passkey dùng khóa số riêng trên thiết bị, khó bị đánh cắp qua phishing và không cần ghi nhớ như mật khẩu.",
+        "expected_context": [
+          "nist_good_password::chunk-18",
+          "nist_good_password::chunk-19"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-18",
+          "nist_good_password::chunk-19",
+          "nist_good_password::chunk-6",
+          "nist-sp800-63b-4::chunk-541",
+          "nist-sp800-63b-4::chunk-113"
+        ],
+        "answer": "Passkeys are a new way to prove your identity online. The passkey is different for every login, so even if an attacker could get the secret code off your device, they wouldn’t be able to use it for any other websites.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.04,
+        "context_recall": 1.0,
+        "context_precision": 0.4,
+        "retrieval_trace": {
+          "best_dense_score": 0.6303658485412598,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-manager-mfa",
+        "question": "Vì sao password manager nên hỗ trợ MFA?",
+        "expected_answer": "Vì đăng nhập password manager bảo vệ toàn bộ mật khẩu, nên MFA giúp tài khoản quản lý mật khẩu an toàn hơn.",
+        "expected_context": [
+          "nist_good_password::chunk-21"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-21",
+          "nist_mfa::chunk-3",
+          "nist_good_password::chunk-14",
+          "nist_mfa::chunk-8",
+          "nist_good_password::chunk-15"
+        ],
+        "answer": "However, password managers still require a login. Passwords alone are not effective in securing your most sensitive business assets, as they have become too easy for threat actors to access.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.042553,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7243152260780334,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "passphrase-guidance",
+        "question": "Passphrase giúp người dùng tạo mật khẩu dài như thế nào?",
+        "expected_answer": "Passphrase kết hợp nhiều từ thật để dễ nghĩ ra và dễ nhớ hơn trong khi tạo mật khẩu dài.",
+        "expected_context": [
+          "nist_good_password::chunk-24"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-24",
+          "nist-sp800-63b-4::chunk-541",
+          "nist-sp800-63b-4::chunk-465",
+          "nist_good_password::chunk-31",
+          "nist-sp800-63b-4::chunk-647"
+        ],
+        "answer": "NIST guidance recommends that a password should be at least 15 characters long. straightforward approach based primarily on password length is presented herein.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.6870101690292358,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "audience-restriction",
+        "question": "Audience restriction giúp RP bảo vệ assertion khỏi replay hoặc injection như thế nào?",
+        "expected_answer": "Assertion phải chứa định danh của RP intended target; RP phải kiểm tra audience để ngăn assertion tạo cho RP này bị dùng ở RP khác.",
+        "expected_context": [
+          "nist-sp800-63c-4::chunk-309",
+          "nist-sp800-63c-4::chunk-310"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63c-4::chunk-309",
+          "nist-sp800-63c-4::chunk-67",
+          "nist-sp800-63c-4::chunk-777",
+          "nist-sp800-63c-4::chunk-493",
+          "nist-sp800-63c-4::chunk-488"
+        ],
+        "answer": "Assertions SHALL use audience restriction techniques to allow an RP to recognize These requirements are listed here and expanded in other sections of this",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.105263,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7585353851318359,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "fal-levels",
+        "question": "FAL2 cung cấp mức bảo vệ nào cho giao dịch federation?",
+        "expected_answer": "FAL2 cung cấp mức bảo vệ cao và thêm bảo vệ trước nhiều tấn công vào hệ thống federation, gồm inject assertion.",
+        "expected_context": [
+          "nist-sp800-63-4::chunk-226"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63c-4::chunk-82",
+          "nist-sp800-63-4::chunk-226",
+          "nist-sp800-63c-4::chunk-79",
+          "nist-sp800-63c-4::chunk-86",
+          "nist-sp800-63c-4::chunk-84"
+        ],
+        "answer": "MAY be established prior to the federation transaction (i.e., a “pre-established” trust • FAL1: FAL1 provides a basic level of protection for federation transactions and",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.051282,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7696341872215271,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "authentication-intent",
+        "question": "Một quy trình xác thực thể hiện authentication intent khi nào?",
+        "expected_answer": "Khi claimant phải phản hồi rõ ràng với từng yêu cầu xác thực hoặc xác thực lại.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-255"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-255",
+          "nist-sp800-63b-4::chunk-616",
+          "nist-sp800-63b-4::chunk-256",
+          "nist-sp800-63-4::chunk-364",
+          "nist-sp800-63b-4::chunk-41"
+        ],
+        "answer": "An authentication process demonstrates intent if it requires the claimant to respond The process of confirming the claimant’s intent to authenticate or reauthenticate by",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.066667,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7652060985565186,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-blocklist",
+        "question": "Vì sao verifier nên so sánh mật khẩu người dùng với blocklist?",
+        "expected_answer": "Vì lựa chọn mật khẩu thường dễ đoán và có thể chứa mật khẩu từ các vụ lộ dữ liệu; blocklist nên gồm password từ breach và từ điển.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-549"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-122",
+          "nist-sp800-63b-4::chunk-266",
+          "nist-sp800-63b-4::chunk-551",
+          "nist-sp800-63b-4::chunk-119",
+          "nist-sp800-63b-4::chunk-121"
+        ],
+        "answer": "Verifiers SHALL offer guidance to the subscriber to help the subscriber choose a strong SHOULD implement a blocklist to discourage subscribers from selecting commonly used",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.046512,
+        "context_recall": 0.0,
+        "context_precision": 0.0,
+        "retrieval_trace": {
+          "best_dense_score": 0.6905601620674133,
+          "dense_count": 5,
+          "bm25_count": 0,
+          "rrf_calls": 0,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      }
+    ]
+  },
+  "config_b": {
+    "name": "hybrid + RRF",
+    "use_reranking": true,
+    "score_threshold": -1.0,
+    "top_k": 5,
+    "latency_seconds": 2.145,
+    "metrics": {
+      "faithfulness": 1.0,
+      "answer_relevance": 0.036529,
+      "context_recall": 0.794118,
+      "context_precision": 0.188235,
+      "average": 0.504721
+    },
+    "cases": [
+      {
+        "id": "password-single-factor-length",
+        "question": "Mật khẩu dùng làm cơ chế xác thực một yếu tố phải dài tối thiểu bao nhiêu ký tự?",
+        "expected_answer": "NIST yêu cầu mật khẩu dùng cho xác thực một yếu tố có tối thiểu 15 ký tự.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-114"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-115",
+          "nist-sp800-63b-4::chunk-265",
+          "nist-sp800-63b-4::chunk-161",
+          "nist-sp800-63b-4::chunk-114",
+          "nist-sp800-63b-4::chunk-171"
+        ],
+        "answer": "authentication processes to be shorter but SHALL require them to be a minimum authenticator and its associated user endpoint.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7122765183448792,
+          "dense_count": 10,
+          "bm25_count": 0,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-mfa-length-and-maximum",
+        "question": "Với mật khẩu chỉ dùng trong xác thực đa yếu tố, độ dài tối thiểu là bao nhiêu và verifier nên cho phép tối đa bao nhiêu?",
+        "expected_answer": "Mật khẩu chỉ dùng trong xác thực đa yếu tố phải có ít nhất 8 ký tự; verifier nên cho phép độ dài tối đa ít nhất 64 ký tự.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-115"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-114",
+          "nist-sp800-63b-4::chunk-251",
+          "nist-sp800-63b-4::chunk-115",
+          "nist-sp800-63b-4::chunk-245",
+          "nist-sp800-63b-4::chunk-161"
+        ],
+        "answer": "Other composition requirements for passwords SHALL NOT with the verifier identifier, or using similar cryptographically secure means.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.04878,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7355780005455017,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "authentication-factor-types",
+        "question": "Ba loại yếu tố xác thực theo NIST là gì?",
+        "expected_answer": "Ba loại là thứ bạn biết, thứ bạn có và thứ thuộc về bạn.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-615"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-615",
+          "nist_mfa::chunk-16",
+          "nist-sp800-63-4::chunk-3",
+          "nist_identity_revision4::chunk-10",
+          "nist-sp800-63-4::chunk-341"
+        ],
+        "answer": "The three types of authentication factors are something you know, something you have, - [NIST SP 800-63 Digital Identity Guidelines](https://www.nist.gov/identity-access-management/projects/nist-special-publication-800-63-digital-identity-guidelines \"NIST Special Publication 800-63 Digital Identity Guidelines\")",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.5150905847549438,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "mfa-definition",
+        "question": "NIST định nghĩa xác thực đa yếu tố MFA như thế nào?",
+        "expected_answer": "MFA là hệ thống yêu cầu nhiều hơn một loại yếu tố xác thực khác nhau để xác thực thành công.",
+        "expected_context": [
+          "nist-sp800-63-4::chunk-404"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-14",
+          "nist_mfa::chunk-14",
+          "nist_mfa::chunk-3",
+          "nist-sp800-63-4::chunk-404",
+          "nist-sp800-63b-4::chunk-642"
+        ],
+        "answer": "If the app or website you’re using requires a password to log in, you should check if it gives you the option to turn on something known as multifactor authentication, or MFA. - Have we completed an inventory of all our systems to determine which ones offer multi-factor authentication?",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.036364,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.5780083537101746,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "mfa-second-factor",
+        "question": "MFA làm kẻ tấn công khó chiếm tài khoản hơn như thế nào khi mật khẩu bị lộ?",
+        "expected_answer": "Kẻ tấn công còn phải kiểm soát yếu tố thứ hai, thường là thứ người dùng đang sở hữu như điện thoại.",
+        "expected_context": [
+          "nist_good_password::chunk-15"
+        ],
+        "retrieved_ids": [
+          "nist_mfa::chunk-7",
+          "nist_mfa::chunk-9",
+          "nist_good_password::chunk-15",
+          "nist_mfa::chunk-3",
+          "nist_good_password::chunk-14"
+        ],
+        "answer": "**How does MFA Protect My Business From this Threat?** **Taking MFA to the Next Level: Phishing-Resistant Authentication**",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7081503868103027,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-resistance-definition",
+        "question": "Phishing resistance trong giao thức xác thực có nghĩa là gì?",
+        "expected_answer": "Đó là khả năng ngăn lộ secret xác thực và output hợp lệ cho verifier giả mạo mà không dựa vào sự cảnh giác của claimant.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-242",
+          "nist-sp800-63b-4::chunk-243"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-242",
+          "nist_phishing_resistance::chunk-8",
+          "nist-sp800-63b-4::chunk-651",
+          "nist_mfa::chunk-13",
+          "nist-sp800-63b-4::chunk-244"
+        ],
+        "answer": "Phishing attacks, previously referred to in SP 800-63B as “verifier impersonation,” are address the following attack vectors associated phishing:",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.052632,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7351251840591431,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "otp-not-phishing-resistant",
+        "question": "Vì sao OTP phải nhập thủ công không được xem là phishing-resistant?",
+        "expected_answer": "Vì việc nhập thủ công không ràng buộc output của authenticator với đúng phiên đang xác thực, nên verifier giả có thể chuyển tiếp output.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-244",
+          "nist-sp800-63b-4::chunk-245"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-170",
+          "nist-sp800-63b-4::chunk-245",
+          "nist-sp800-63b-4::chunk-179",
+          "nist_mfa::chunk-9",
+          "nist-sp800-63b-4::chunk-80"
+        ],
+        "answer": "OTP authentication is not phishing-resistant. band and OTP authenticators) SHALL NOT be considered phishing-resistant because",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.6827465295791626,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "fido-authenticator-example",
+        "question": "Ví dụ phổ biến của authenticator chống phishing là gì?",
+        "expected_answer": "FIDO authenticator kết hợp với Web Authentication API của W3C là một dạng phổ biến; nó có thể là khóa phần cứng hoặc tích hợp trong điện thoại/laptop.",
+        "expected_context": [
+          "nist_mfa::chunk-10"
+        ],
+        "retrieved_ids": [
+          "nist_phishing_resistance::chunk-14",
+          "nist-sp800-63b-4::chunk-242",
+          "nist_phishing_resistance::chunk-9",
+          "nist-sp800-63b-4::chunk-409",
+          "nist_mfa::chunk-10"
+        ],
+        "answer": "As complicated as this may seem, there are several practical examples of phishing resistant authenticators in place today. Phishing attacks, previously referred to in SP 800-63B as “verifier impersonation,” are",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.744733452796936,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-victim-password",
+        "question": "Nếu nghi mình là nạn nhân phishing thì nên làm gì với các mật khẩu bị ảnh hưởng?",
+        "expected_answer": "Nếu có thể, hãy đổi ngay mật khẩu của các tài khoản bị ảnh hưởng; nếu dùng lại mật khẩu đó ở nơi khác thì đổi sang mật khẩu riêng và mạnh.",
+        "expected_context": [
+          "nist_phishing::chunk-11"
+        ],
+        "retrieved_ids": [
+          "nist_phishing::chunk-5",
+          "nist_phishing::chunk-10",
+          "nist_phishing::chunk-17",
+          "nist_phishing::chunk-7",
+          "nist_phishing_resistance::chunk-21"
+        ],
+        "answer": "**How Can I Protect My Business from Phishing?** **What should I do if I think I’ve been a victim of a phishing attack?**",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 0.0,
+        "context_precision": 0.0,
+        "retrieval_trace": {
+          "best_dense_score": 0.8380659818649292,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "phishing-financial-account",
+        "question": "Nếu phishing ảnh hưởng đến tài khoản tài chính thì nên liên hệ ai và theo dõi điều gì?",
+        "expected_answer": "Hãy liên hệ ngay bộ phận gian lận của ngân hàng để báo sự cố và theo dõi giao dịch trái phép.",
+        "expected_context": [
+          "nist_phishing::chunk-12"
+        ],
+        "retrieved_ids": [
+          "nist_phishing::chunk-2",
+          "nist_phishing::chunk-5",
+          "nist-sp800-63-4::chunk-322",
+          "nist_phishing::chunk-10",
+          "nist_phishing::chunk-12"
+        ],
+        "answer": "Artificial intelligence (AI) can now be used to craft increasingly convincing phishing attacks, so it is more imperative than ever to take a second, or third, look at any message requesting you to take action—such asking you to click a link, download a file, transfer funds, log into an account, or submit sensitive information. **How Can I Protect My Business from Phishing?**",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7919304966926575,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "passkey-properties",
+        "question": "Passkey khác mật khẩu ở điểm nào liên quan đến phishing và ghi nhớ?",
+        "expected_answer": "Passkey dùng khóa số riêng trên thiết bị, khó bị đánh cắp qua phishing và không cần ghi nhớ như mật khẩu.",
+        "expected_context": [
+          "nist_good_password::chunk-18",
+          "nist_good_password::chunk-19"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-18",
+          "nist_good_password::chunk-19",
+          "nist_good_password::chunk-17",
+          "nist_good_password::chunk-6",
+          "nist_phishing::chunk-17"
+        ],
+        "answer": "Passkeys are a new way to prove your identity online. The passkey is different for every login, so even if an attacker could get the secret code off your device, they wouldn’t be able to use it for any other websites.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.04,
+        "context_recall": 1.0,
+        "context_precision": 0.4,
+        "retrieval_trace": {
+          "best_dense_score": 0.6303658485412598,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-manager-mfa",
+        "question": "Vì sao password manager nên hỗ trợ MFA?",
+        "expected_answer": "Vì đăng nhập password manager bảo vệ toàn bộ mật khẩu, nên MFA giúp tài khoản quản lý mật khẩu an toàn hơn.",
+        "expected_context": [
+          "nist_good_password::chunk-21"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-21",
+          "nist_good_password::chunk-14",
+          "nist_mfa::chunk-7",
+          "nist_good_password::chunk-15",
+          "nist_mfa::chunk-15"
+        ],
+        "answer": "However, password managers still require a login. If the app or website you’re using requires a password to log in, you should check if it gives you the option to turn on something known as multifactor authentication, or MFA.",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.078431,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7243152260780334,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "passphrase-guidance",
+        "question": "Passphrase giúp người dùng tạo mật khẩu dài như thế nào?",
+        "expected_answer": "Passphrase kết hợp nhiều từ thật để dễ nghĩ ra và dễ nhớ hơn trong khi tạo mật khẩu dài.",
+        "expected_context": [
+          "nist_good_password::chunk-24"
+        ],
+        "retrieved_ids": [
+          "nist_good_password::chunk-24",
+          "nist-sp800-63-4::chunk-410",
+          "nist-sp800-63b-4::chunk-647",
+          "nist_good_password::chunk-31",
+          "nist-sp800-63b-4::chunk-462"
+        ],
+        "answer": "NIST guidance recommends that a password should be at least 15 characters long. pairwise pseudonymous identifier",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.0,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.6870101690292358,
+          "dense_count": 10,
+          "bm25_count": 7,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "audience-restriction",
+        "question": "Audience restriction giúp RP bảo vệ assertion khỏi replay hoặc injection như thế nào?",
+        "expected_answer": "Assertion phải chứa định danh của RP intended target; RP phải kiểm tra audience để ngăn assertion tạo cho RP này bị dùng ở RP khác.",
+        "expected_context": [
+          "nist-sp800-63c-4::chunk-309",
+          "nist-sp800-63c-4::chunk-310"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63c-4::chunk-309",
+          "nist-sp800-63c-4::chunk-67",
+          "nist-sp800-63c-4::chunk-777",
+          "nist-sp800-63c-4::chunk-72",
+          "nist-sp800-63-4::chunk-359"
+        ],
+        "answer": "Assertions SHALL use audience restriction techniques to allow an RP to recognize These requirements are listed here and expanded in other sections of this",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.105263,
+        "context_recall": 0.5,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7585353851318359,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "fal-levels",
+        "question": "FAL2 cung cấp mức bảo vệ nào cho giao dịch federation?",
+        "expected_answer": "FAL2 cung cấp mức bảo vệ cao và thêm bảo vệ trước nhiều tấn công vào hệ thống federation, gồm inject assertion.",
+        "expected_context": [
+          "nist-sp800-63-4::chunk-226"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63c-4::chunk-82",
+          "nist-sp800-63c-4::chunk-84",
+          "nist-sp800-63-4::chunk-226",
+          "nist-sp800-63c-4::chunk-714",
+          "nist-sp800-63c-4::chunk-85"
+        ],
+        "answer": "MAY be established prior to the federation transaction (i.e., a “pre-established” trust At FAL2, the assertion SHALL be strongly protected from assertion injection attacks, as",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.146341,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7696341872215271,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "authentication-intent",
+        "question": "Một quy trình xác thực thể hiện authentication intent khi nào?",
+        "expected_answer": "Khi claimant phải phản hồi rõ ràng với từng yêu cầu xác thực hoặc xác thực lại.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-255"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-255",
+          "nist-sp800-63b-4::chunk-616",
+          "nist-sp800-63b-4::chunk-256",
+          "nist-sp800-63-4::chunk-363",
+          "nist-sp800-63-4::chunk-364"
+        ],
+        "answer": "An authentication process demonstrates intent if it requires the claimant to respond The process of confirming the claimant’s intent to authenticate or reauthenticate by",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.066667,
+        "context_recall": 1.0,
+        "context_precision": 0.2,
+        "retrieval_trace": {
+          "best_dense_score": 0.7652060985565186,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      },
+      {
+        "id": "password-blocklist",
+        "question": "Vì sao verifier nên so sánh mật khẩu người dùng với blocklist?",
+        "expected_answer": "Vì lựa chọn mật khẩu thường dễ đoán và có thể chứa mật khẩu từ các vụ lộ dữ liệu; blocklist nên gồm password từ breach và từ điển.",
+        "expected_context": [
+          "nist-sp800-63b-4::chunk-549"
+        ],
+        "retrieved_ids": [
+          "nist-sp800-63b-4::chunk-266",
+          "nist-sp800-63b-4::chunk-623",
+          "nist-sp800-63b-4::chunk-551",
+          "nist-sp800-63b-4::chunk-121",
+          "nist-sp800-63b-4::chunk-113"
+        ],
+        "answer": "SHOULD implement a blocklist to discourage subscribers from selecting commonly used pressure, typing speed, mouse or mobile phone movements, and gyroscope position,",
+        "answerable_by_fixed_generator": true,
+        "faithfulness": 1.0,
+        "answer_relevance": 0.046512,
+        "context_recall": 0.0,
+        "context_precision": 0.0,
+        "retrieval_trace": {
+          "best_dense_score": 0.6905601620674133,
+          "dense_count": 10,
+          "bm25_count": 10,
+          "rrf_calls": 1,
+          "fallback_attempted": false,
+          "fallback_status": "not_attempted"
+        }
+      }
+    ]
+  }
+}

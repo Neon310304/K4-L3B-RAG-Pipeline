@@ -1,9 +1,11 @@
-# Individual contribution report
+# Individual contribution report template
+
+Báo cáo đóng góp đã điền cho thành viên hiện tại ở [K4-L3B-2A202602522-Tran-Quoc-Vuong.md](K4-L3B-2A202602522-Tran-Quoc-Vuong.md). File này giữ mẫu dùng chung nếu cần thêm thành viên hoặc cập nhật phân công.
 
 Mỗi thành viên copy template này thành:
 
 ```text
-reports/<student-id>-<short-name>.md
+reports/K4-L3B-MSSV-Name.md
 ```
 
 Giới hạn khuyến nghị: 1 trang, không chép lại README hoặc mô tả lý thuyết chung. Báo cáo không phải một bài pipeline cá nhân; mục đích là ghi nhận ownership và bằng chứng đóng góp trong sản phẩm nhóm.

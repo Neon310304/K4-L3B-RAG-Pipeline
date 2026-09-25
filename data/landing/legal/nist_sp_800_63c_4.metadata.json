@@ -1,0 +1,18 @@
+{
+  "id": "nist-sp800-63c-4",
+  "filename": "nist_sp_800_63c_4.pdf",
+  "title": "NIST SP 800-63C-4: Federation and Assertions",
+  "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+  "source_page": "https://csrc.nist.gov/pubs/sp/800/63/c/4/final",
+  "doc_type": "legal",
+  "publisher": "NIST",
+  "language": "en",
+  "edition": "Revision 4, final, July 2025",
+  "date_published": "2025-07-31",
+  "date_crawled": "2026-09-25T04:14:53+00:00",
+  "resolved_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63c-4.pdf",
+  "sha256": "dce901711d044dcdd672fe28c2b012558786db0532e634bd65fa9506f88b3cdb",
+  "page_count": 150,
+  "license": "NIST public information: copying/distribution permitted except material marked copyrighted; source attribution retained. Article images excluded.",
+  "license_url": "https://www.nist.gov/copyrights-disclaimers"
+}

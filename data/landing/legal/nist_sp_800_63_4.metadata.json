@@ -1,0 +1,18 @@
+{
+  "id": "nist-sp800-63-4",
+  "filename": "nist_sp_800_63_4.pdf",
+  "title": "NIST SP 800-63-4: Digital Identity Guidelines",
+  "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+  "source_page": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+  "doc_type": "legal",
+  "publisher": "NIST",
+  "language": "en",
+  "edition": "Revision 4, final, July 2025",
+  "date_published": "2025-07-31",
+  "date_crawled": "2026-09-25T04:14:48+00:00",
+  "resolved_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-4.pdf",
+  "sha256": "2f5b107de218a0fc3fe7f7e91b2ece5babb001eda5745b7c568a3cc876002f2d",
+  "page_count": 96,
+  "license": "NIST public information: copying/distribution permitted except material marked copyrighted; source attribution retained. Article images excluded.",
+  "license_url": "https://www.nist.gov/copyrights-disclaimers"
+}

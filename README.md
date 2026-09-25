@@ -1,84 +1,156 @@
-# Day 8 — RAG Pipeline
+# K4-L3B RAG Pipeline — Account Safety
 
-## Mục tiêu
+Chatbot hỏi đáp RAG về **an toàn tài khoản**: mật khẩu, MFA, phishing và đăng nhập liên kết. Pipeline giữ nguồn từ corpus đến câu trả lời, kết hợp dense retrieval với BM25/RRF, có fallback PageIndex tùy chọn, citation kiểm chứng được và báo cáo A/B giữa dense-only và hybrid.
 
-Mỗi nhóm xây dựng một chatbot RAG trả lời câu hỏi từ bộ tài liệu do nhóm thu thập. Sản phẩm phải có hybrid retrieval, citation, giao diện chat và báo cáo đánh giá.
+## Trạng thái hiện tại
 
-Nhóm tự chọn bài toán và thu thập dữ liệu phù hợp; repo không cung cấp dữ liệu mẫu.
+- Corpus: 3 tài liệu NIST dạng PDF và 5 bài viết công khai, tổng 8 document.
+- Index: 2.079 chunk, recursive chunking 500/50, BAAI/bge-m3 local, vector 1024 chiều.
+- Retrieval: Chroma cosine + BM25 + RRF `k=60`, `top_k=5`, threshold production `0.60`.
+- Generation: OpenAI Responses, Gemini hoặc Anthropic qua cùng một adapter; citation map về `SearchResult` và safe refusal khi thiếu evidence.
+- UI: Streamlit chat có lịch sử, nguồn, URL, retrieval method, score và evidence quote.
+- Evaluation: 17 golden cases; A/B và bốn metric được ghi trong `group_project/evaluation/RESULT.md`.
+- Kiểm thử cuối: `86 passed`.
 
-## Sản phẩm phải nộp
+## Cài đặt
 
-- Repository nhóm chạy được.
-- Tối thiểu 3 tài liệu chính sách và 5 bài viết/page do nhóm tự thu thập.
-- Pipeline: convert → chunk → index → dense + BM25 → RRF → fallback → generation có citation.
-- Chatbot Streamlit hiển thị câu trả lời và nguồn đã dùng.
-- Golden dataset tối thiểu 15 câu; đánh giá 4 metric và so sánh A/B.
-- `group_project/evaluation/RESULT.md`.
-- Mỗi thành viên nộp báo cáo cá nhân theo template trong `group_project/ịndividual/INDIVIDUAL_REPORT.md`.
+Yêu cầu Python 3.10–3.13, Git và trình duyệt Chromium. Trên Windows PowerShell:
 
-## Quick start
-
-```bash
+```powershell
+git clone https://github.com/Neon310304/K4-L3B-RAG-Pipeline.git
+cd K4-L3B-RAG-Pipeline
 python -m venv .venv
-source .venv/bin/activate       # Windows: .venv\Scripts\activate
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e ".[dev]"
-python -m playwright install chromium
-cp .env.example .env
+.\.venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m playwright install chromium
+Copy-Item .env.example .env
 ```
 
-Điền API key cần dùng trong `.env`; không commit file này.
+`.env.example` mô tả các biến cấu hình provider/model. `.env` là cấu hình cục bộ và đã được ignore bởi Git; chọn một provider trước khi chạy generation thật. Corpus, embedding local, retrieval, evaluation offline và test không phụ thuộc vào việc ghi secret vào repository.
 
-```bash
-# 1. Thu thập và chuẩn hoá
-python -m src.task1_collect_legal_docs
-python -m src.task2_crawl_news
-python -m src.task3_convert_markdown
+## Chạy pipeline
 
-# 2. Index và kiểm tra contract
-python -m src.task4_chunking_indexing
-pytest -q
+### Thu thập và chuẩn hóa corpus
 
-# 3. Chạy sản phẩm
+```powershell
+.\.venv\Scripts\python.exe -m src.task1_collect_legal_docs
+.\.venv\Scripts\python.exe -m src.task2_crawl_news
+.\.venv\Scripts\python.exe -m src.task3_convert_markdown
+```
+
+Nguồn được lưu ở `data/landing/`, bản Markdown chuẩn hóa ở `data/standardized/`. Xem manifest và provenance trong [`docs/CORPUS.md`](docs/CORPUS.md) và [`reports/CORPUS_REPORT.md`](reports/CORPUS_REPORT.md).
+
+### Chunk, index và retrieval
+
+```powershell
+.\.venv\Scripts\python.exe -m src.task4_chunking_indexing
+.\.venv\Scripts\python.exe -m src.task5_semantic_search
+.\.venv\Scripts\python.exe -m src.task6_lexical_search
+.\.venv\Scripts\python.exe -m src.task7_reranking
+.\.venv\Scripts\python.exe -m src.verify_retrieval
+.\.venv\Scripts\python.exe -m src.calibrate_retrieval --threshold 0.60
+.\.venv\Scripts\python.exe -m src.verify_hybrid
+```
+
+Task 4 ghi snapshot chunk vào `data/index/` và index vector vào `chroma_db/`. Hai đường search dùng cùng chunk ID và metadata. Task 7 chỉ fusion một lần; Task 9 quyết định fallback bằng cosine score gốc của dense, không dùng RRF score.
+
+### Generation và UI
+
+```powershell
+.\.venv\Scripts\python.exe -m src.task10_generation
 streamlit run app.py
 ```
 
-## Lộ trình 3 giờ
+Trong UI, nhập câu hỏi thuộc chủ đề để xem câu trả lời cùng citation `[n]`, source, URL, method, score và quote. Với câu hỏi ngoài corpus hoặc thiếu evidence, hệ thống giữ an toàn bằng fallback/refusal thay vì tự tạo nguồn.
 
-| Mốc                  | Thời gian | Kết quả cần có                           |
-| -------------------- | --------: | ---------------------------------------- |
-| 0. Setup             |   10 phút | Môi trường và `.env` sẵn sàng            |
-| 1. Data              |   25 phút | ≥3 legal, ≥5 news, Markdown đã chuẩn hoá |
-| 2. Index & search    |   30 phút | ChromaDB, dense search và BM25 chạy được |
-| 3. Fusion & fallback |   25 phút | RRF và fallback tuân thủ contract        |
-| 4. Generation & UI   |   30 phút | Chatbot trả lời có citation              |
-| 5. Evaluation        |   30 phút | 15+ Q&A, 4 metric, A/B comparison        |
-| 6. Demo & handoff    |   30 phút | Test, report, demo và push repository    |
+### Evaluation A/B
 
-## Lưu ý quy tắc để có code quality tốt:
-
-- Dense và BM25 nên cùng trả về `SearchResult` theo một schema.
-- RRF chỉ nên dùng để gộp thứ hạng và chỉ chạy một lần.
-- Fallback dùng cosine score gốc của dense retrieval.
-- Threshold phải được hiệu chỉnh trên query in domain và out of domain, không có một con số đúng cho mọi corpus.
-
-## Tài liệu
-
-- [Module contracts](docs/MODULE_CONTRACTS.md): schema, interface và invariant mà code/test nên tuân theo.
-- [Step-by-step guide](docs/STEP_BY_STEP.md): thứ tự triển khai và tiêu chí hoàn thành từng bước.
-- [Grading rubric](docs/GRADING_RUBRIC.md): Rubric thang điểm.
-- [Individual report](group_project/ịndividual/INDIVIDUAL_REPORT.md): template báo cáo cá nhân.
-- [Suggested topics](docs/SUGGESTED_TOPICS.md): danh sách chủ đề tham khảo, không bắt buộc.
-
-## Kiểm tra
-
-```bash
-# Contract tests
-pytest tests/test_contracts.py -q
-
-# Acceptance tests
-pytest tests/test_acceptance.py -q
-
-# Toàn bộ
-pytest -q
+```powershell
+.\.venv\Scripts\python.exe -m src.evaluate_ab
 ```
+
+Lệnh chạy cùng 17 golden cases cho:
+
+- **Config A:** dense-only.
+- **Config B:** dense + BM25 + một lượt RRF.
+
+Generator, evaluator, prompt, corpus snapshot và `top_k=5` được giữ nguyên. Kết quả chi tiết nằm trong [`group_project/evaluation/RESULT.md`](group_project/evaluation/RESULT.md), dữ liệu máy đọc trong [`reports/AB_RESULTS.json`](reports/AB_RESULTS.json).
+
+## Kiến trúc
+
+```text
+Corpus sources
+    │ task1–3
+    ▼
+Standardized Markdown ──► chunk + embedding ──► Chroma dense search
+                                      └───────► BM25 lexical search
+                                                     │
+                                      dense score ────┤ threshold
+                                                     ▼
+                                              RRF fusion once
+                                                     │
+                                  low confidence ─► PageIndex (optional)
+                                                     │
+                                                     ▼
+                                  context + verifier + citations
+                                                     │
+                                                     ▼
+                                              Streamlit chat UI
+```
+
+## Cấu trúc chính
+
+| Đường dẫn | Vai trò |
+| --- | --- |
+| `src/task1_collect_legal_docs.py` – `task3_convert_markdown.py` | Thu thập và chuẩn hóa corpus |
+| `src/task4_chunking_indexing.py` – `task6_lexical_search.py` | Chunk, embedding, Chroma và BM25 |
+| `src/task7_reranking.py` – `task9_retrieval_pipeline.py` | RRF, PageIndex adapter và fallback |
+| `src/task10_generation.py` | Context, provider dispatch, verifier và citation |
+| `app.py` | Streamlit UI |
+| `group_project/evaluation/` | Golden dataset và báo cáo A/B |
+| `docs/` | Contract, hướng dẫn và quyết định kỹ thuật |
+| `reports/` | Checkpoint, manifest và kết quả tái lập |
+
+## Kiểm thử
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_acceptance.py -q
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m pip check
+git diff --check
+```
+
+Acceptance hiện đạt **5 passed**; toàn bộ suite đạt **86 passed**. Test provider/PageIndex dùng mock hoặc adapter offline để kiểm tra contract, timeout, citation, refusal và lỗi provider mà không làm UI crash.
+
+## Tài liệu và bằng chứng
+
+- [Corpus và provenance](docs/CORPUS.md) · [checkpoint corpus](reports/CORPUS_REPORT.md)
+- [Module contracts](docs/MODULE_CONTRACTS.md) · [retrieval design](docs/RETRIEVAL.md) · [retrieval checkpoint](reports/RETRIEVAL_REPORT.md)
+- [Hybrid, RRF và fallback](docs/HYBRID_RETRIEVAL.md) · [hybrid checkpoint](reports/HYBRID_REPORT.md)
+- [Generation và UI checkpoint](reports/GENERATION_REPORT.md)
+- [Golden dataset](group_project/evaluation/golden_dataset.json) · [A/B report](group_project/evaluation/RESULT.md)
+- [Rubric](docs/GRADING_RUBRIC.md) · [phân công](TEAMMATES.md) · [báo cáo đóng góp](reports/K4-L3B-2A202602522-Tran-Quoc-Vuong.md)
+
+## Trước khi push
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+git diff --check
+git status --short
+```
+
+Không đưa `.env`, API key, `chroma_db/`, `data/index/` hoặc cache PageIndex vào commit. Nhánh làm việc hiện tại là `work/rag-pipeline`; sau khi review diff và test, có thể commit rồi push nhánh này lên remote.
+
+## Nộp trên VLearn
+
+Nộp URL repository của nhánh/commit cuối theo cấu trúc root hiện có. Báo cáo cá nhân dùng tên `reports/K4-L3B-MSSV-Name.md`; báo cáo của thành viên hiện tại là [`K4-L3B-2A202602522-Tran-Quoc-Vuong.md`](reports/K4-L3B-2A202602522-Tran-Quoc-Vuong.md).
+
+Trước khi nộp, chạy đúng ba checkpoint:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_contracts.py -q
+.\.venv\Scripts\python.exe -m pytest tests/test_acceptance.py -q
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+Demo cần có một câu hỏi trong chủ đề, một câu hỏi ngoài corpus và màn hình A/B trong [`group_project/evaluation/RESULT.md`](group_project/evaluation/RESULT.md). Citation trên UI phải mở được source thuộc chính `sources` của câu trả lời.

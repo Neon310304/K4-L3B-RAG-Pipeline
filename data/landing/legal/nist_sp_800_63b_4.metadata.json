@@ -1,0 +1,18 @@
+{
+  "id": "nist-sp800-63b-4",
+  "filename": "nist_sp_800_63b_4.pdf",
+  "title": "NIST SP 800-63B-4: Authentication and Authenticator Management",
+  "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+  "source_page": "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
+  "doc_type": "legal",
+  "publisher": "NIST",
+  "language": "en",
+  "edition": "Revision 4, final, July 2025",
+  "date_published": "2025-07-31",
+  "date_crawled": "2026-09-25T04:14:50+00:00",
+  "resolved_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+  "sha256": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd",
+  "page_count": 129,
+  "license": "NIST public information: copying/distribution permitted except material marked copyrighted; source attribution retained. Article images excluded.",
+  "license_url": "https://www.nist.gov/copyrights-disclaimers"
+}
